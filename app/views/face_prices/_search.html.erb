@@ -1,0 +1,43 @@
+<%= form_for(@search, url: path, method: 'GET', enforce_utf8: false, html: {class: 'form-inline search'}) do |f| %>
+  <div class="form-group">
+    <%= f.label 'sku.product.name|sku.product.product_no', '产品编号/名称' %>
+    <%= f.text_field 'sku.product.name|sku.product.product_no', class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'sku.level', '等级' %>
+    <%=
+      f.select(
+        'sku.level',
+        Sku::LEVEL_TO_TEXT.to_a.map(&:reverse),
+        {include_blank: '全部',},
+        class: 'form-control'
+      )
+    %>
+  </div>
+
+  <div class="form-group price-range">
+    <label for="price_type">价格</label>
+    <%=
+      select_tag(
+        :price_type,
+        options_for_select(
+          [
+            ['网上面价', 'price'],
+            ['门店标价', 'store_price'],
+          ],
+          params[:price_type]
+        ),
+        class: 'form-control'
+      )
+    %>
+    ：
+    <input type="text" class="form-control" id="min_price" name="min_price" value="<%= params[:min_price] %>">
+    -
+    <input type="text" class="form-control" id="max_price" name="max_price" value="<%= params[:max_price] %>">
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-info">搜索</button>
+  </div>
+<% end %>

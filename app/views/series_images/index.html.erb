@@ -1,0 +1,39 @@
+<ul class="nav nav-tabs">
+  <% @categories.each_with_index do |category, index| %>
+    <li class="<%= 'active' if index == 0 %>">
+      <% if category[1] %>
+        <a data-toggle="tab" href="#<%= "category-#{category[1]}" %>"><%= category[0] %></a>
+      <% else %>
+        <a class="disabled" href="javascript:void(0)"><%= category[0] %></a>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<div class="tab-content">
+  <% @categories.select {|name, id| id}.each_with_index do |category, index| %>
+    <div class="tab-pane <%= 'active' if index == 0 %>" id="category-<%= category[1] %>">
+      <%= form_tag series_images_path do %>
+        <input type="hidden" name="[series_images]product_category_id" value="<%= category[1] %>">
+        <% image_url = @series_images[category[1]]&.image&.image_url %>
+        <div class="image-previewer">
+          <input type="file" name="[series_images]image_file" accept="image/png, image/jpeg, image/gif" required>
+          <% if image_url %>
+            <span class="change">点击修改</span>
+            <img src="<%= image_url %>" alt="image">
+          <% else %>
+            <span class="change">点击添加</span>
+          <% end %>
+        </div>
+
+        <div class="view-original-image <%= 'hide' unless image_url %>">
+          <a target="_blank" href="<%= image_url %>">查看原图</a>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn btn-primary save">保存</button>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

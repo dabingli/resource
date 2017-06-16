@@ -1,0 +1,139 @@
+<%= form_for(@product, html: {class: 'form-inline product ajax-submit'}) do |f| %>
+  <!-- 面包屑导航 -->
+  <ol class="breadcrumb">
+    <%
+      categories =
+        [@product.product_category] +
+        @product.product_category.ancestor_categories
+    %>
+
+    <% categories.reverse_each do |category| %>
+     <li class="active"><%= category.name %></li>
+    <% end %>
+  </ol>
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#zh-CN">中文</a></li>
+    <% Product::MAINTAINED_LANGUAGES.each do |language| %>
+      <li><a data-toggle="tab" href="#<%= language.foreign %>"><%= language.name %></a></li>
+    <% end %>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane active" id="zh-CN">
+      <!-- 卫浴大类下禁止修改分类 -->
+      <div class="category-selector"
+           data-api="<%= product_categories_tree_path(parent_id: @product.product_category.root_category.id) %>"
+           data-disabled='<%= 'disabled' if @product.product_category.ancestor?(201) %>'
+       >
+        <%= f.hidden_field :product_category_id, autocomplete: 'off' %>
+        <%
+          # 不显示顶级分类
+          product_categories = @product.product_categories[1..-1].to_a
+          product_categories.fill(nil, product_categories.size...5)
+        %>
+        <% product_categories.each_with_index do |category, index| %>
+          <div class="form-group required <%= 'hide' unless category || index == 0 %>">
+            <label for="category-level-<%= index %>">
+              产品分类<%= index + 1 %>级
+            </label>
+
+            <%# 加 'hide' 类，设置 option，都是为了避免页面加载后分类选择器突变，影响体验 %>
+            <select class="form-control" id="category-level-<%= index %>" required
+              <%== %Q{data-selected="#{category.id}"} if category %>>
+              <% if category %>
+                <option value="<%= category.id %>"><%= category.name %></option>
+              <% else %>
+                <option value="">请选择</option>
+              <% end %>
+            </select>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="form-group required">
+        <%= f.label :product_no %>
+        <%= f.text_field :product_no, class: 'form-control', required: true %>
+      </div>
+
+      <% @product.product_category.product_fields.each do |field| %>
+        <% if field.name.nil? %>
+          <div class="form-group"></div>
+          <% next %>
+        <% elsif field.name == '优等品' %>
+          <div class="form-group">
+            <label>等级</label>
+            <input type="text" class="form-control" value="优等品" disabled>
+          </div>
+          <% next %>
+        <% end %>
+
+        <div class="form-group <%= 'required' if field.required %>">
+          <%= f.label field.name, field.title %>
+          <%=
+            if field.name !~ /_id$/
+              unless Product.column_for_attribute(field.name)
+                raise "Unknown field: #{field.name}"
+              end
+              case Product.column_for_attribute(field.name).type
+              when :decimal, :string, :text
+                f.text_field field.name, class: 'form-control', required: field.required
+              when :integer
+                f.number_field field.name, class: 'form-control', required: field.required
+              when :boolean
+                <<-HTML.html_safe
+                  <div class="radios">
+                    <label class="radio-inline">
+                      #{f.radio_button(field.name, true)}
+                      是
+                    </label>
+                    <label class="radio-inline">
+                      #{f.radio_button(field.name, false)}
+                      否
+                    </label>
+                  </div>
+                HTML
+              else
+                raise 'Unhandled column type'
+              end
+            else
+              f.select(
+                field.name,
+                @product.product_category.select_options(field.name),
+                { include_blank: '请选择' },
+                {
+                  class: 'form-control',
+                  required: field.required,
+                }
+
+              )
+            end
+          %>
+        </div>
+      <% end %>
+    </div>
+
+    <% Product::MAINTAINED_LANGUAGES.each do |language| %>
+      <div class="tab-pane" id="<%= language.foreign %>">
+        <%= f.fields_for :product_languages, @product.language_record(language.id) do |f| %>
+          <%= f.hidden_field :id %>
+          <%= f.hidden_field :language_id %>
+          <% @product.product_category.international_fields.each do |field_name| %>
+            <div class="form-group">
+              <%= f.label field_name %>
+              <%= f.text_field field_name, class: 'form-control' %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="form-group actions">
+    <button type="submit" class="btn btn-primary">
+      <%= @product.new_record? ? '添加' : '保存' %>
+    </button>
+    <a href="<%= request.headers[:referer] %>" class="btn btn-warning">返回</a>
+  </div>
+
+<% end %>

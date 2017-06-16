@@ -1,0 +1,23 @@
+/product_categories:
+  get:
+    tags:
+      - ProductCategories
+    summary: 获取产品分类
+    description: |
+      获取产品分类树形结构，结果可能为空
+
+    parameters:
+      - $ref: '#/parameters/site_code'
+      - $ref: '#/parameters/language'
+      - name: parent_id
+        in: query
+        required: false
+        type: integer
+        description: 上级分类 ID。若传递，只返回该分类的子分类
+    responses:
+      200:
+        description: 产品分类树形结构
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/ProductCategory'

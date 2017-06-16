@@ -1,0 +1,101 @@
+<%=
+  # 卫浴、家居
+  top_category_ids = [
+    ProductCategory.top_id(:bathing),
+    ProductCategory.top_id(:furniture),
+    ProductCategory.top_id(:home_furnishing),
+  ]
+
+  product_categories = ProductCategory.where(id: top_category_ids).to_a.sort_by do |category|
+    top_category_ids.index(category.id)
+  end
+
+  render 'search',
+    path: products_or_products_suit_path(@product_category.id),
+    product_categories: product_categories.map { |c| [c.name, c.id] }
+%>
+
+<%
+  # 所选分类，及其所有祖先分类的 id
+  selected_category_ids = @product_category.id_and_ancestor_category_ids
+  categories = product_categories
+%>
+<% until categories.blank? %>
+  <ul class="nav-categories">
+    <% categories.each do |category| %>
+      <li class="<%= 'active' if selected_category_ids.include?(category.id) %>">
+        <a href="<%= products_or_products_suit_path(category.id) %>">
+          <%= category.name %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+  <%
+    category = categories.find do |c|
+      selected_category_ids.include?(c.id)
+    end
+    categories = category && category.children
+  %>
+<% end %>
+
+<% if @product_category.children.blank? %>
+  <a href="<%= new_product_path(product_category_id: @product_category.id) %>" class="btn btn-info add">
+    添加<%= @product_category.name %>
+  </a>
+<% end %>
+
+<table class="table table-striped table-bordered management">
+  <thead>
+    <tr>
+      <th>产品编号</th>
+      <th>产品分类</th>
+      <th>产品名称</th>
+      <th>品牌</th>
+      <th>更新时间</th>
+      <th>操作</th>
+      <th>
+        <% if @current_user.price_manager? %>
+          价格管理
+        <% else %>
+          素材管理
+        <% end %>
+      </th>
+    </tr>
+  </thead>
+
+  <tbody class="text-center">
+    <% @products.each do |product| %>
+      <tr data-id="<%= product.id %>">
+        <td><%= product.product_no %></td>
+        <td><%= product.product_category&.name %></td>
+        <td><%= product.name %></td>
+        <td><%= product.brand %></td>
+        <td><%= product.updated_at.strftime("%Y/%m/%d %H:%M") %></td>
+        <td>
+          <a href="<%= product_path(product.id) %>">查看</a>
+          <a href="<%= edit_product_path(product.id) %>">编辑</a>
+          <a href="<%= product_path(product.id) %>" class="delete">删除</a>
+        </td>
+        <td>
+          <% if @current_user.price_manager? %>
+            <a href="<%= new_domestic_price_path(@domestic_price, product_id: product.id) %>">国内价</a>&nbsp;
+            <a href="<%= new_face_price_path(@face_price, product_id: product.id) %>">面价</a>
+          <% else %>
+            <a href="<%= product_images_path('search[product_id]' => product.id) %>">查看</a>
+            <% if product.skus.size < 4 %>
+              <span class="btn btn-link add-sku">添加</span>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%=
+  will_paginate(@products, :params => {
+    :product_category_id => @product_category.id
+  })
+%>
+
+<%= render 'product_images/form' %>

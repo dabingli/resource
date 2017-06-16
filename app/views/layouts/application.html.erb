@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>资源管理中心</title>
+  <meta name="description" content="楼兰陶瓷资源管理中心">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="<%= controller_name.gsub('_', '-') %> <%= cookies[:body_sidebar_class] %>">
+  <header class="page-header">
+    <a href="<%= root_path %>" class="logo">
+      <span class="mini">RC</span>
+      <span class="large">资源管理中心</span>
+    </a>
+    <nav>
+      <i class="fa fa-bars sidebar-toggle"></i>
+      <div class="dropdown user-info">
+        <span class="dropdown-toggle">
+          <i class="fa fa-user"></i>
+          <span class="name"><%= @current_user.name %></span>
+          <span class="caret"></span>
+        </span>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li><a href="<%= logout_path %>" class="item">退出</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <aside class="page-sidebar" id="page-sidebar">
+    <%= render 'layouts/sidebar' %>
+  </aside>
+
+  <main class="page-main">
+    <% unless flash.blank? %>
+      <div class="alert alert-danger">
+        <ul>
+          <% flash.each do |key, value| %>
+            <li><%= value %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= yield %>
+  </main>
+</body>
+</html>

@@ -1,0 +1,21 @@
+default: &default
+  driver: hiredis
+  host: <%= ENV['REDIS_HOST'] || '127.0.0.1' %>
+  port: <%= ENV['REDIS_PORT'] || 6379 %>
+  db: 1
+
+development:
+  <<: *default
+  namespace: rc_development
+
+test:
+  <<: *default
+  namespace: rc_test
+
+staging:
+  <<: *default
+  namespace: rc_staging
+
+production:
+  <<: *default
+  namespace: rc

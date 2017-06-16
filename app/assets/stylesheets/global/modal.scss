@@ -1,0 +1,34 @@
+.modal {
+  .modal-title {
+    text-align: center;
+  }
+
+  .modal-content {
+    .loader {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+
+      .progress {
+        position: absolute;
+        left: 5%;
+        // 避免 modal 过高时看不到进度条
+        top: 150px;
+        width: 90%;
+
+        .progress-bar {
+          width: 100%;
+        }
+      }
+    }
+
+    &.loading .loader {
+      display: block;
+    }
+  }
+}

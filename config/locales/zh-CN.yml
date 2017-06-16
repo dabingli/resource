@@ -1,0 +1,379 @@
+zh-CN:
+  will_paginate:
+    previous_label: "上一页"
+    next_label: "下一页"
+    page_gap: "&hellip;"
+
+  attributes:
+    id: ID
+    name: 名称
+    en_name: 英文名称
+    position: 排序
+    created_at: 添加时间
+    updated_at: 更新时间
+
+  activerecord:
+    models:
+      additional_function: 功能
+      ancillary_incidental: 配套附带
+      appearance: 外型
+      baby_management: 宝贝管理
+      base_unit: 基本单位
+      business_unit: 业务单位
+      capacity: 功率
+      chassis_material: 底盘材质
+      color: 颜色/涂装颜色
+      currency: 货币单位
+      domestic_price: 国内价格 # 国内各平台、各仓库价格，不含面价
+      door_opening_method: 门开启方式
+      drainage_method: 排水方向
+      export_price: 出口价 # 国外平台使用。区分平台，不区分仓库
+      face_price: 国内面价 # 区分平台，不区分仓库
+      flush_control_method: 冲水控制方式
+      flush_method: 冲水方式
+      flush_volume: 冲水量
+      glass_thickness: 玻璃厚度
+      glass_variety: 玻璃品种
+      image: 图片
+      installation_method: 安装方式
+      language: 语言
+      lid: 下水方式
+      main_cabinet_range: 主柜尺寸范围
+      material: 材质
+      mesa_style: 台面类型
+      mirror_cabinet_range: 镜柜尺寸范围
+      outlet_direction: 下水方向
+      package_method: 包装方式
+      pits_distance: 坑距
+      power: 电源
+      price_unit: 价格单位 # 片/平方米。只有国外平台区分价格单位
+      product: 产品
+      product_category: 产品分类
+      product_category_base_unit: 根分类基本单位 # 各根分类拥有的基本单位
+      product_category_material: 根分类材质
+      product_category_shape: 根分类形状
+      product_category_spec_size: 根分类规格尺寸范围
+      product_category_surface_craft: 根分类表面工艺
+      product_field: 各分类产品属性
+      product_hall: 商品馆
+      product_hall_sku: 商品馆商品 # 各商品馆包含的商品
+      product_image: 产品图片
+      product_image_category: 产品图片类型
+      product_language: 各语言产品信息
+      product_style: 产品风格
+      product_use_place: 产品用途
+      rim_category: 装边类型
+      safety_device: 安全装置
+      seat_power: 座圈功率
+      series_image: 系列图
+      shape: 形状
+      shower_faucet_style: 淋浴花洒龙头类型
+      shower_type_bracket: 花洒支架类型
+      main_cabinet_range:   主柜/梳妆台规格范围 
+      mirror_cabinet_range: 卫浴镜/梳妆镜规格范围
+      side_cabinet_range:   侧柜/层架/梳妆凳规格范围
+      site: 平台
+      site_sku: 平台商品 # 各平台上架的商品
+      sku: SKU
+      slot_number: 槽数
+      spec_size: 规格尺寸
+      spool_style: 阀芯类型
+      surface_craft: 表面工艺
+      take_temperature: 坐温
+      tap_hole: 龙头开孔
+      thickness: 厚度
+      towel_rack_style: 浴巾架类型
+      user: 用户
+      warehouse: 仓库
+      water_absrp_rate: 吸水率
+      water_temperature: 水温
+      whole_material: 镜面材质
+      product_fabric: 产品面料
+      product_structure: 产品结构
+      seat_comfort: 软硬舒适度
+      spring_structure: 弹簧结构
+      surface_gloss: 表面光泽度
+      product_type: 产品类型
+      pits_distance: 排污孔距
+      
+
+    attributes:
+      baby_management:
+        sku_id: SKU
+        baby_no: 宝贝编号
+
+      currency:
+        code: 货币代码 # ISO 4217 货币代码，如 CNY, USD
+        name: 名称
+        en_name: 英文名称
+        position: 排序
+
+      domestic_price:
+        site_id: 平台
+        sku_id: SKU
+        warehouse_id: 仓库
+        nomember_price: 非会员价
+        member_price: 会员价
+
+      export_price:
+        sku_id: SKU
+        price_unit_id: 价格单位
+        price: 面价
+        nomember_price: 非会员价
+        member_price: 会员价
+        active: 是否有效 # 同一 SKU 会有两种价格单位的价格，但只能有一种是 active
+
+      face_price:
+        sku_id: SKU
+        price: 面价
+        store_price: 门店标价
+
+      image:
+        md5: MD5
+        file_size: 上传文件大小 # 字节
+        filename: 上传文件名称
+        image: 存储名称 # 访问地址 = 域名 + 存储目录 + 存储名称
+        url: URL # 完整访问地址
+
+      language:
+        name: 名称
+        foreign: 代码 # 如 zh-CN, zh-TW
+        position: 排序
+
+      product_category:
+        name: 名称
+        en_name: 英文名称
+        parent_id: 上级分类
+        position: 排序
+
+      product_category_base_unit:
+        product_category_id: 产品分类
+        base_unit_id: 基本单位
+        position: 排序
+
+      product_category_material:
+        material_id: 材质
+        product_category_id: 产品分类
+        position: 排序
+
+      product_category_shape:
+        product_category_id: 产品分类
+        shape_id: 形状
+        position: 排序
+
+      product_category_spec_size:
+        product_category_id: 产品分类
+        spec_size_id: 规格尺寸
+
+      product_category_surface_craft:
+        product_category_id: 产品分类
+        surface_craft_id: 表面工艺
+        position: 排序
+
+      product_field:
+        product_category_id: 产品分类
+        name: 属性字段
+        title: 产品属性名称
+        required: 必填
+        position: 排序
+
+      product_hall:
+        site_id: 平台
+        name: 名称
+        position: 排序
+
+      product_hall_sku:
+        product_hall_id: 商品馆
+        sku_id: SKU
+
+      product_image_category:
+        name: 名称
+        position: 排序
+        max_count: 最大数量 # 同一 SKU 在该分类下允许存在的最大图片数量
+
+      product_image:
+        image_id: 图片
+        product_image_category_id: 产品图片类型
+        sku_id: SKU
+        position: 排序
+
+      product_language:
+        language_id: 语言
+        product_id: 产品
+        name: 产品名称
+        description: 产品说明
+        brand: 品牌
+
+      product:
+        root_product_category_id: 根分类 # 非 product_categories 表的分类，而是自定义的分类
+        product_category_id: 产品分类 # 直接分类。祖先类需根据 production_category 中的 parent_id 查出
+        product_no: 产品编号
+        name: 产品名称
+        description: 产品说明
+        additional_function_id: 附加功能
+        ancillary_incidental_id: 配套附带
+        appearance_id: 外型
+        base_unit_id: 基本单位
+        brand: 品牌
+        business_unit_id: 业务单位
+        capacity_id: 功率
+        cases_per_pallet: 打托数量
+        chassis_material_id: 底盘材质
+        color_id: 颜色
+        door_opening_method_id: 开门方式
+        drain_water_way: 地漏下水方式
+        drainage_method_id: 排水方向
+        flush_control_method_id: 冲水控制方式
+        flush_method_id: 冲水方式
+        flush_volume_id: 冲水量
+        glass_thickness_id: 玻璃厚度
+        glass_varieties_id: 玻璃品种
+        has_cold_hot_water: 是否冷热水
+        has_contain_chassis: 是否含底盘
+        has_cover_damper: 盖板是否缓冲
+        has_mirror_lamp: 是否镜灯
+        has_steam: 是否设蒸气
+        has_water_bend: 是否带存水弯
+        has_wooden_rack: 是否含木架
+        installation_method_id: 安装方式
+        lid_id: 盖子
+        main_cabinet_range_id: 主柜/梳妆台规格范围
+        main_cabinet_size: 主柜/梳妆台尺寸（mm）
+        material_id: 材质
+        mesa_style_id: 台面类型
+        mirror_cabinet_range_id: 卫浴镜/梳妆镜规格范围
+        mirror_cabinet_size: 卫浴镜/梳妆镜尺寸（mm）
+        outlet_direction_id: 下水方向
+        package_dimension: 包装规格
+        package_method_id: 包装方式
+        package_weight: 包装重量(kg)
+        packing_unit: 包装单位
+        pits_distance_id: 坑距
+        power_id: 电源
+        product_style_id: 产品风格
+        product_use_place_id: 产品用途
+        rim_category_id: 装边类型
+        safety_device_id: 安全装置
+        seat_power_id: 座圈功率
+        series: 系列
+        shape_id: 形状
+        shower_faucet_style_id: 淋浴花洒龙头类型
+        shower_type_bracket_id: 花洒支架类型
+        side_cabinet_range_id: 侧柜/层架/梳妆凳规格范围
+        side_cabinet_size: 侧柜/层架/梳妆凳尺寸（mm）
+        slot_number_id: 槽数
+        spec: 产品规格
+        spec_size_id: 规格尺寸
+        spool_style_id: 阀芯类型
+        surface_craft_id: 表面工艺
+        take_temperature_id: 坐温
+        tap_hole_id: 龙头开孔
+        thickness_id: 厚度(mm)
+        towel_rack_style_id: 浴巾架类型
+        unit_area: 单位面积(㎡) # 也可用作体积(m³)
+        unit_weight: 单位重量(kg)
+        water_absrp_rate_id: 吸水率
+        water_temperature_id: 水温
+        whole_material_id: 镜面材质
+        ceramics_thickness: 厚度
+        product_origin: 产品产地
+        set_number: 套装数量
+        number_of_package_items: 包装件数
+        product_structure_id: 产品结构
+        facing_materials: 饰面材质
+        product_fabric_id: 产品面料
+        painting_process: 油漆工艺
+        surface_gloss_id: 表面光泽度
+        spring_structure_id: 弹簧结构
+        filler: 填充物
+        seat_comfort_id: 软硬舒适度
+        door_opening_method_id: 开合方式
+        package_items: 产品包含
+        production_cycle: 生产周期
+        customizable: 可否定制
+        maintenance_instruction: 保养说明
+        warranty_time: 保修周期
+        design_concept: 设计理念
+        meterial_advantage: 甄选良材
+        functionality_advantage: 功能亮点
+        product_material: 产品材质
+        has_heating: 座圈/冲水是否加温
+        product_type_id: 产品类型
+        pits_distance_id: 排污孔距
+        voltage_level_id: 电压等级
+        applicable_space_id: 适用空间    
+        intelligence: 智能
+        light_material_id: 灯体主材
+        light_attachment_id: 灯体附材
+        lampshade_material_id: 灯罩主材
+        lampshade_attachment_id: 灯罩附材
+        lamp_technology_id: 灯具工艺
+        light_source: 光源
+        source_category_id: 光源类别
+        spatial_range_id: 空间范围
+        suitable_storey_id: 适合层高
+        light_category_id: 灯光色调类别
+        color_temperature_id: 色温
+        lumen_id: 流明
+        feature_id: 功能特性
+        base_type_id: 灯头规格
+        light_quantity_id: 光源数量
+        certificate: 证书认证
+        internal_range: 内规格范围(cm)
+        external_range: 外规格范围(cm)
+        wood_species: 木种/表皮
+        surface_effect: 表面效果/面型
+        mat_handle: 地垫处理
+        eco_level_id: 环保等级
+        buckle_type_id: 扣型
+        chamfering_process_id: 倒角工艺
+        wax_process_id: 封蜡工艺
+        product_color: 产品色调
+        power_capacity: 功率
+        light_body: 灯体主材
+        product_shape: 产品形状
+        lanterns_technology: 灯具工艺
+        electric_voltage: 电压
+        light_number: 光源数量
+        functional_property: 功能特性
+        product_mold: 产品类型
+        colour_temperature: 色温(K)
+        light_tone: 灯光色调类别
+        current: 电流(AC)
+        gloss: 光泽度
+
+
+      series_image:
+        product_category_id: 产品分类 # 非 product_categories 表的分类，而是自定义的分类
+        image_id: 图片
+
+      site_sku:
+        site_id: 平台
+        sku_id: SKU
+
+      site:
+        code: 编码
+        name: 名称
+        domestic: 是否是国内网站
+
+      sku:
+        product_id: 产品
+        level: 等级
+
+      user:
+        employee_number: 工号
+        name: 名称
+        mobile: 手机号
+        password_digest: 密码
+        admin: 是否管理员
+
+      product_category_product_type:
+        product_type_id: 产品类型
+        product_category_id: 产品分类
+        position: 排序
+
+      product_type:
+        name: 名称
+        en_name: 英文名称
+        position: 排序
+

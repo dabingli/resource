@@ -1,0 +1,12 @@
+Site.seed(:id,
+  { id: 1, code: "51exc", name: "E选材", domestic: true },
+  { id: 2, code: "ezz168", name: "E找砖", domestic: true },
+  { id: 3, code: "97efx", name: "E分销", domestic: true },
+  { id: 4, code: "51ecg", name: "E采购", domestic: true },
+  { id: 5, code: "51ezg", name: "E直供", domestic: true },
+  { id: 6, code: "ezz-ws", name: "E找砖微商", domestic: true },
+  { id: 7, code: "llhome", name: "家居网", domestic: true },
+  { id: 8, code: "chinahomeb2b", name: "chinahome", domestic: false },
+  { id: 9, code: "lolatiles", name: "lolatiles", domestic: false },
+  { id:10, code: "b2b", name: "B2B平台", domestic: true },
+)

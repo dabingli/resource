@@ -1,0 +1,30 @@
+<%= render 'search', path: face_prices_path %>
+<table class="table table-bordered table-striped management">
+  <thead>
+    <tr>
+      <th>产品名称</th>
+      <th>产品编号</th>
+      <th>等级</th>
+      <th>网上面价</th>
+      <th>门店标价</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+
+  <tbody class="text-center">
+    <% @face_prices.each do |face_price| %>
+      <tr>
+        <td><%= face_price.sku&.product&.name %></td>
+        <td><%= face_price.sku&.product&.product_no %></td>
+        <td><%= face_price.sku&.level_text %></td>
+        <td><%= face_price.price %></td>
+        <td><%= face_price.store_price %></td>
+        <td>
+          <a href="<%= edit_face_price_path(face_price) %>">编辑</a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @face_prices %>

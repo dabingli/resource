@@ -1,0 +1,310 @@
+en:
+  attributes:
+    id: ID
+    name: Name
+    en_name: Name
+    position: Sort
+    created_at: Created At
+    updated_at: Updated At
+
+  activerecord:
+    models:
+      additional_function: Additional Function
+      ancillary_incidental: Ancillary Incidental
+      appearance: Appearance
+      baby_management: Baby Management
+      base_unit: Base Unit
+      business_unit: Business Unit
+      capacity: Capacity
+      chassis_material: Chassis Material
+      color: Color
+      currency: Currency
+      domestic_price: Domestic Price
+      door_opening_method: Door Opening Method
+      drainage_method: Drainage Method
+      export_price: Export Price
+      face_price: Face Price
+      flush_control_method: Flush Control Method
+      flush_method: Flush Method
+      flush_volume: Flush Volume
+      glass_thickness: Glass Thickness
+      glass_variety: Glass Variety
+      image: Image
+      installation_method: Installation Method
+      language: Language
+      lid: Lid
+      main_cabinet_range: Main Cabinet Range
+      material: Material
+      mesa_style: Mesa Style
+      mirror_cabinet_range: Mirror Cabinet Range
+      outlet_direction: Outlet Direction
+      package_method: Package Method
+      pits_distance: Pits Distance
+      power: Power
+      price_unit: Price Unit
+      product: Product
+      product_category: Product Category
+      product_category_base_unit: Product Category Base Unit
+      product_category_material: Product Category Material
+      product_category_shape: Product Category Shape
+      product_category_spec_size: Product Category Spec Size
+      product_category_surface_craft: Product Category Surface Craft
+      product_field: Product Field
+      product_hall: Product Hall
+      product_hall_sku: Product Hall SKU
+      product_image: Product Image
+      product_image_category: Product Image Category
+      product_language: Product Language
+      product_style: Product Style
+      product_use_place: Product Use Place
+      rim_category: Rim Category
+      safety_device: Safety Device
+      seat_power: Seat Power
+      series_image: Series Image
+      shape: Shape
+      shower_faucet_style: Shower Faucet Style
+      shower_type_bracket: Shower Type Bracket
+      side_cabinet_range: Side Cabinet Range
+      site: Site
+      site_sku: Site SKU
+      sku: SKU
+      slot_number: Slot Number
+      spec_size: Spec Size
+      spool_style: Spool Style
+      surface_craft: Surface Craft
+      take_temperature: Take Temperature
+      tap_hole: Tap Hole
+      thickness: Thickness
+      towel_rack_style: Towel Rack Style
+      user: User
+      warehouse: Warehouse
+      water_absrp_rate: Water Absorption
+      water_temperature: Water Temperature
+      whole_material: Whole Material
+      product_fabric: Product Fabric
+      product_structure: Product Structure
+      seat_comfort: Seat Comfort
+      spring_structure: Spring Structure
+      surface_gloss: Surface Gloss
+
+    attributes:
+      baby_management:
+        sku_id: SKU
+        baby_no: Number
+
+      currency:
+        code: Code
+
+      domestic_price:
+        site_id: Site
+        sku_id: SKU
+        warehouse_id: Warehouse
+        nomember_price: Nomember Price
+        member_price: Member Price
+
+      export_price:
+        sku_id: SKU
+        price_unit_id: Price Unit
+        price: Price
+        nomember_price: Nomember Price
+        member_price: Member Price
+        active: Active
+
+      face_price:
+        sku_id: SKU
+        price: Face Price
+        store_price: Store Price
+
+      image:
+        md5: Md5
+        file_size: File Size
+        filename: Filename
+        image: Image
+        url: URL
+
+      language:
+        name: Name
+        foreign: Code
+
+      product_category:
+        name: Name
+        parent_id: Parent
+
+      product_category_base_unit:
+        product_category_id: Product Category
+        base_unit_id: Base Unit
+
+      product_category_material:
+        material_id: Material
+        product_category_id: Product Category
+
+      product_category_shape:
+        product_category_id: Product Category
+        shape_id: Shape
+
+      product_category_spec_size:
+        product_category_id: Product Category
+        spec_size_id: Spec Size
+
+      product_category_surface_craft:
+        product_category_id: Product Category
+        surface_craft_id: Surface Craft
+
+      product_field:
+        product_category_id: Product Category
+        name: Name
+        title: Title
+        required: Required
+
+      product_hall:
+        site_id: Site
+        name: Name
+
+      product_hall_sku:
+        product_hall_id: Product Hall
+        sku_id: SKU
+
+      product_image_category:
+        name: Name
+        max_count: Max Count
+
+      product_image:
+        image_id: Image
+        product_image_category_id: Product Image Category
+        sku_id: SKU
+
+      product_language:
+        language_id: Language
+        product_id: Product
+        name: Name
+        description: Description
+        brand: Brand
+
+      product:
+        root_product_category_id: Root Product Category
+        product_category_id: Product Category
+        product_no: Product Number
+        name: Name
+        description: Description
+        additional_function_id: Additional Function
+        ancillary_incidental_id: Ancillary Incidental
+        appearance_id: Appearance
+        base_unit_id: Base Unit
+        brand: Brand
+        business_unit_id: Business Unit
+        capacity_id: Capacity
+        cases_per_pallet: Cases Per Pallet
+        chassis_material_id: Chassis Material
+        color_id: Color
+        door_opening_method_id: Door Opening Method
+        drain_water_way: Drain Water Way
+        drainage_method_id: Drainage Method
+        flush_control_method_id: Flush Control Method
+        flush_method_id: Flush Method
+        flush_volume_id: Flush Volume
+        glass_thickness_id: Glass Thickness
+        glass_varieties_id: Glass Varieties
+        has_cold_hot_water: Has Cold Hot Water
+        has_contain_chassis: Has Contain Chassis
+        has_cover_damper: Has Cover Damper
+        has_mirror_lamp: Has Mirror Lamp
+        has_steam: Has Steam
+        has_water_bend: Has Water Bend
+        has_wooden_rack: Has Wooden Rack
+        installation_method_id: Installation Method
+        lid_id: Lid
+        main_cabinet_range_id: Main Cabinet Range
+        main_cabinet_size: Main Cabinet Size
+        material_id: Material
+        mesa_style_id: Mesa Style
+        mirror_cabinet_range_id: Mirror Cabinet Range
+        mirror_cabinet_size: Mirror Cabinet Size
+        outlet_direction_id: Outlet Direction
+        package_dimension: Package Dimension
+        package_method_id: Package Method
+        package_weight: Package Weight
+        packing_unit: Packing Unit
+        pits_distance_id: Pits Distance
+        power_id: Power
+        product_style_id: Product Style
+        product_use_place_id: Product Use Place
+        rim_category_id: Rim Category
+        safety_device_id: Safety Device
+        seat_power_id: Seat Power
+        series: Series
+        shape_id: Shape
+        shower_faucet_style_id: Shower Faucet Style
+        shower_type_bracket_id: Shower Type Bracket
+        side_cabinet_range_id: Side Cabinet Range
+        side_cabinet_size: Side Cabinet Size
+        slot_number_id: Slot Number
+        spec: Size
+        spec_size_id: Spec Size
+        spool_style_id: Spool Style
+        surface_craft_id: Surface Treatment
+        take_temperature_id: Take Temperature
+        tap_hole_id: Tap Hole
+        thickness_id: Thickness
+        towel_rack_style_id: Towel Rack Style
+        unit_area: Unit Area
+        unit_weight: Unit Weight
+        water_absrp_rate_id: Water Absorption
+        water_temperature_id: Water Temperature
+        whole_material_id: Whole Material
+        ceramics_thickness: Ceramics Thickness
+        product_origin: Product Origin
+        set_number: Set Number
+        number_of_package_items: Number Of Package Items
+        product_structure_id: Product Structure
+        facing_materials: Facing Materials
+        product_fabric_id: Product Fabric
+        painting_process: Painting Process
+        surface_gloss_id: Surface Gloss
+        spring_structure_id: Spring Structure
+        filler: Filler
+        seat_comfort_id: Seat Comfort
+        door_opening_method_id: Door Opening Method
+        package_items: Package Items
+        production_cycle: Production Cycle
+        customizable: Customizable
+        maintenance_instruction: Maintenance Instruction
+        warranty_time: Warranty Time
+        design_concept: Design Concept
+        meterial_advantage: Meterial Advantage
+        functionality_advantage: Functionality Advantage
+        product_material: Product Material
+        product_type_id: Product type
+
+      series_image:
+        product_category_id: Category
+        image_id: Image
+
+      site_sku:
+        site_id: Site
+        sku_id: SKU
+
+      site:
+        code: Code
+        name: Name
+        domestic: Domestic
+
+      sku:
+        product_id: Product
+        level: Level
+
+      user:
+        employee_number: Employee Number
+        name: Name
+        mobile: Phone
+        password_digest: Password
+        admin: Admin
+
+      product_category_product_type:
+        product_type_id: Product type
+        product_category_id: Product Category
+        position: Sort
+
+      product_type:
+        name: Name
+        en_name: Name
+        position: Sort

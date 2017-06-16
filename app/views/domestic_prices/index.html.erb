@@ -1,0 +1,35 @@
+<%= render 'search', path: domestic_prices_path %>
+
+<table class="table table-bordered table-striped management">
+  <thead>
+    <tr>
+      <th>产品名称</th>
+      <th>产品编号</th>
+      <th>等级</th>
+      <th>平台</th>
+      <th>仓库</th>
+      <th>非会员价</th>
+      <th>会员价</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+
+  <tbody class="text-center">
+    <% @domestic_prices.each do |domestic_price| %>
+      <tr>
+        <td><%= domestic_price.sku&.product&.name %></td>
+        <td><%= domestic_price.sku&.product&.product_no %></td>
+        <td><%= domestic_price.sku&.level_text %></td>
+        <td><%= domestic_price.site&.name %></td>
+        <td><%= domestic_price.warehouse&.name %></td>
+        <td><%= domestic_price.nomember_price %></td>
+        <td><%= domestic_price.member_price %></td>
+        <td>
+          <a href="<%= edit_domestic_price_path(domestic_price) %>">编辑</a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @domestic_prices %>

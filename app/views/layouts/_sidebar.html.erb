@@ -1,0 +1,100 @@
+<ul class="sidebar">
+  <li class="treeview <%= 'active' if controller_name == 'products' %>">
+    <a href="#">
+      <i class="fa fa-plus-square-o"></i>
+      <span>商品录入</span>
+      <i class="fa fa-angle-left"></i>
+    </a>
+    <ul class="treeview-menu">
+      <li>
+        <a href="<%= products_path(product_category_id: ProductCategory.top_id(:tiles)) %>">
+          <i class="fa fa-circle-o"></i> 非套裝
+        </a>
+      </li>
+      <li>
+        <a href="<%= suit_products_path(product_category_id: ProductCategory.top_id(:bathing)) %>">
+          <i class="fa fa-circle-o"></i> 套裝
+        </a>
+      </li>
+    </ul>
+  </li>
+
+  <% if @current_user.price_manager? %>
+    <li class="<%= 'active' if controller_name == 'domestic_prices' %>">
+      <a href="<%= domestic_prices_path %>">
+        <i class="fa fa-cny"></i>
+        <span>国内价</span>
+      </a>
+    </li>
+    <li class="<%= 'active' if controller_name == 'face_prices' %>">
+      <a href="<%= face_prices_path %>">
+        <i class="fa fa-cny"></i>
+        <span>面价</span>
+      </a>
+    </li>
+    <li class="<%= 'active' if controller_name == 'export_prices' %>">
+      <a href="<%= export_prices_path(product_category_id: '1') %>">
+        <i class="fa fa-usd"></i>
+        <span>出口价</span>
+      </a>
+    </li>
+  <% else %>
+    <li class="<%= 'active' if controller_name == 'product_images' %>">
+      <a href="<%= product_images_path %>">
+        <i class="fa fa-image"></i>
+        <span>素材管理</span>
+      </a>
+    </li>
+    <li class="<%= 'active' if controller_name == 'product_halls' %>">
+      <a href="<%= product_halls_path %>">
+        <i class="fa fa-university"></i>
+        <span>商品馆管理</span>
+      </a>
+    </li>
+    <li class="<%= 'active' if controller_name == 'guides' %>">
+      <a href="<%= guides_path %>">
+        <i class="fa fa-inbox"></i>
+        <span>购物须知录入</span>
+      </a>
+    </li>
+    <li class="<%= 'active' if controller_name == 'problems' %>">
+      <a href="<%= problems_path %>">
+        <i class="fa fa-columns"></i>
+        <span>常见问题录入</span>
+      </a>
+    </li>
+    <li class="<%= 'active' if controller_name == 'site_skus' %>">
+      <a href="<%= site_skus_path %>">
+        <i class="fa fa-level-up"></i>
+        <span>上架管理</span>
+      </a>
+    </li>
+    <li class="<%= 'active' if controller_name == 'baby_managements' %>">
+      <a href="<%= baby_managements_path %>">
+        <i class="fa fa-diamond"></i>
+        <span>宝贝管理</span>
+      </a>
+    </li>
+    <li class="<%= 'active' if controller_name == 'series_images' %>">
+      <a href="<%= series_images_path %>">
+        <i class="fa fa-file-image-o"></i>
+        <span>系列图管理</span>
+      </a>
+    </li>
+    <li class="<%= 'active' if controller_name == 'translations' %>">
+      <a href="<%= translations_path %>">
+        <i class="fa fa-language"></i>
+        <span>翻译</span>
+      </a>
+    </li>
+  <% end %>
+
+  <% if @current_user.admin? %>
+    <li class="<%= 'active' if controller_name == 'users' %>">
+      <a href="<%= users_path %>">
+        <i class="fa fa-users"></i>
+        <span>用户管理</span>
+      </a>
+    </li>
+  <% end %>
+</ul>

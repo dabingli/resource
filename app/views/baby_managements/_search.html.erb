@@ -1,0 +1,16 @@
+<%= form_for(@search, url: path, method: 'GET', enforce_utf8: false, html: {class: 'form-inline search'}) do |f| %>
+  <div class="form-group">
+    <%= f.label 'sku.product.name|sku.product.product_no', '产品编号/名称' %>
+    <%= f.text_field 'sku.product.name|sku.product.product_no', class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'baby_no', '宝贝编号' %>
+    <%= f.text_field 'baby_no', class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-info">搜索</button>
+  </div>
+<% end %>
+

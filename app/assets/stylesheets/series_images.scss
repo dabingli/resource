@@ -1,0 +1,30 @@
+body.series-images {
+  .nav {
+    a, a:hover, a:focus {
+      background-color: inherit;
+      outline: none;
+    }
+
+    .active {
+      background-color: #ddd;
+      border-radius: 3px;
+    }
+
+    .disabled {
+      color: inherit;
+    }
+  }
+
+  form {
+    margin-top: 20px;
+  }
+
+  .view-original-image {
+    margin: 20px 0;
+    font-size: 16px;
+  }
+
+  .actions {
+    margin: 20px 0;
+  }
+}

@@ -1,0 +1,50 @@
+body.problems, body.guides{
+  .row{
+    margin: 0;
+    padding: 20px;
+  }
+  .form-group, .form-group1 {
+    display: inline-flex;
+    align-items: center;
+    width: 32.33%;
+    margin: 10px 0;
+    padding-right: 20px;
+    font-size: 14px;
+
+    @media(max-width: 1200px) {
+      width: 50%;
+
+      &:empty {
+        display: none;
+      }
+    }
+
+    @media(max-width: 850px) {
+      width: 100%;
+    }
+
+    & > label:first-child {
+      flex: 0 0 130px;
+      text-align: right;
+      padding-right: 15px;
+      margin-bottom: 0;
+    }
+
+    & > .form-control, & > .radios {
+      display: inline-block;
+      flex: 1 1 auto;
+      width: 100px;
+    }
+
+    &.required > label {
+      position: relative;
+
+      &:after {
+        content: '*';
+        position: absolute;
+        top: 10%;
+        color: #ff0000;
+      }
+    }
+  }
+}

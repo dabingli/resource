@@ -1,0 +1,79 @@
+site_code:
+  name: site_code
+  in: query
+  required: true
+  type: string
+  enum:
+    - b2b
+    - ezz-ws
+    - chinahomeb2b
+    - 51exc
+    - ezz168
+    - 97efx
+    - 51ecg
+    - 51ezg
+    - llhome
+    - lolatiles
+  description: 平台标识
+
+language:
+  name: language
+  in: query
+  required: false
+  type: string
+  enum:
+    - en
+    - zh_CN
+  description: 语言（默认中文）
+
+warehouse:
+  name: warehouse
+  in: query
+  required: false
+  type: string
+  enum:
+    - 佛山
+    - 深圳
+    - 重庆
+    - 成都
+    - 天津
+    - 武汉
+    - 长沙
+    - 南京
+    - 杭州
+    - 南宁
+    - 福州
+    - 海南
+    - 江阴
+  description: 仓库。【国内网站】
+
+user_id:
+  name: is_validate
+  in: query
+  required: false
+  type: integer
+  enum:
+    - 0
+    - 1
+  description: 非会员0, 会员为1, 不传值为面价
+
+page:
+  name: page
+  in: query
+  required: false
+  type: integer
+  description: 页数，默认 1
+
+page_size:
+  name: page_size
+  in: query
+  required: false
+  type: integer
+  description: 每页条数，默认 20
+
+sort_by:
+  name: sort_by
+  in: query
+  required: false
+  type: string
+  description: 排序

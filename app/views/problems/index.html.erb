@@ -1,0 +1,170 @@
+<div class="row p10">
+  <div class="row">
+    <div class="customer_select" data-api="<%= product_categories_tree_path%>" >
+      <input type="hidden" name="product_category_id" value="">
+      <% 
+        areas = [nil, nil]
+      %>
+      <% areas.each do |area|%>
+      <div class="form-group <%= 'hide' unless area %>">
+        <select class="form-control" <%== %Q{data-selected="#{area.id}"} if area %> required >
+          <% if area %>
+            <option value="<%= area.id %>"><%= area.name %></option>
+          <% else %>
+            <option value="">请选择</option>
+          <% end %>
+        </select>
+      </div>
+      <% end %>
+      
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group1">
+    	<textarea id="connet" name="problem[solution]" rows="10" cols="50" style="width:100%;" wrap="hard">问：
+答：</textarea>
+  	</div>
+  </div>
+  <div class="row">
+  	<button type="submit" class="btn btn-primary">保存</button>
+  </div>
+</div>
+<script>
+  (function(){
+    var container = $('.customer_select');
+
+    var input = container.find('input')[0];
+
+    // 转为 id => [{id: 1, name: ''}]，便于使用
+    var idToChildren = {};
+    var setChildren = function(areas){
+      var i$, len$, customer;
+      for (i$ = 0, len$ = areas.length; i$ < len$; ++i$) {
+        customer = areas[i$];
+        if (customer.children && customer.children.length) {
+          idToChildren[customer.id] = customer.children;
+          setChildren(customer.children);
+        }
+      }
+
+    };
+
+    // 初始化
+    var initializeSelector = function(areas){
+      setChildren(areas);
+
+      // 重置，避免页面刷新后与选择器状态不一致
+      input.value = container.find('select[data-selected]:last').val();
+
+      updateOptions(container.find('select:first'), areas);
+    };
+
+    // 下一级分类的 select
+    var nextSelect = function(select){
+      return $(select).closest('.form-group').next('.form-group').find('select');
+    };
+
+    // 隐藏后面的选择框
+    var hideFollowingSelect = function(select){
+      $(select).closest('.form-group').next('.form-group').addClass('hide').find('select').prop('disabled', true);
+    };
+
+    // 更新选项
+    var updateOptions = function(select, areas){
+      select.closest('.form-group').removeClass('hide');
+      select.prop('disabled', false);
+
+      var html = '<option value="">请选择产品分类</option>';
+      var i, len, customer;
+      for (i = 0, len = areas.length; i < len; ++i){
+        customer = areas[i];
+        html += '<option value="' + customer.id + '">' + customer.name + '</option>';
+      }
+
+      select.html(html);
+
+      var id = select.attr('data-selected');
+      if (id) {
+        select.val(id);
+        select.trigger('change');
+        select.removeAttr('data-selected');
+      }
+      else {
+        select.val('');
+        hideFollowingSelect(select);
+      }
+    };
+
+    // 选项改变时，保存选中 id，并更新后代选项
+    container.on('change', 'select', function(){
+      var id = this.value;
+
+      // 保存选中值
+      if (id) {
+        input.value = id;
+      }
+
+      // 选中且有子分类时，更新后代节点
+      if (id && idToChildren[id]) {
+        updateOptions(nextSelect(this), idToChildren[id]);
+      }
+      // 否则隐藏后代节点
+      else {
+        hideFollowingSelect(this);
+      }
+    });
+
+    // 获取分类数据，初始化
+    $.get(container.attr('data-api'), null, function(data){
+      if (data && data.code === 0) {
+        initializeSelector(data.data);
+      }
+      else {
+        flashPrompt('获取产品分类信息失败');
+      }
+    });
+
+    $("select:last").on('change', function(){
+    	var data = {}
+    	data["id"] = $(this).val();
+    	$.ajax({
+    	        url: "<%= problems_tree_path %>",
+    	        method: 'GET',
+    	        data: data,
+    	        dataType: 'json',
+    	        success:function(data){
+    	        	if(data.code == 0){
+    		        	$("#connet").val(data.data)
+    	        	}else{
+    	        		$("#connet").val("")
+    	        	}
+    	        }
+    	})
+    })
+
+    $(".btn").click(function(){
+		if(!$("select:last").val()){
+			alert("必须选栏目")
+			return false
+		}
+		var data = {}
+		data["id"] = $("input:first").val()
+		data["solution"] = $("#connet").val();
+		$.ajax({
+		        url: "<%= problems_create_path %>",
+		        method: 'POST',
+		        data: data,
+		        dataType: 'json',
+		        success:function(data){
+		        	if(data.code == 0){
+		        		alert("成功!");
+			        	$("#connet").val(data.data)
+		        	}else{
+		        		alert("失败!");
+		        		$("#connet").val("")
+		        	}
+		        }
+		})
+	})
+  })();
+</script>

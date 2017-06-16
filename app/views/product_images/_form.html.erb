@@ -1,0 +1,65 @@
+<%
+  if controller_name == 'product_images'
+    api = product_image_path('_ID_')
+    method = 'PUT'
+  else
+    api = product_images_path
+    method = 'POST'
+  end
+%>
+
+<div class="modal fade edit-product-images" tabindex="-1" data-backdrop="static" data-query-api="<%= product_image_path('_ID_') %>" data-query-sku-api="<%= creatable_skus_path %>">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="loader">
+        <div class="progress">
+          <div class="progress-bar progress-bar-info progress-bar-striped active"></div>
+        </div>
+      </div>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+        <h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body">
+        <%= form_tag api, method: method, class: 'form-horizontal' do %>
+          <% if method == 'POST' %>
+            <input type="hidden" name="product_id">
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="level">等级</label>
+              <div class="col-md-8">
+                <select class="form-control" name="sku[level]" id="level"></select>
+              </div>
+            </div>
+          <% end %>
+
+          <div class="image template">
+            <img src="" alt="image">
+            <input type="hidden" name="images[_ID_][]">
+            <i class="fa fa-remove delete"></i>
+          </div>
+
+          <% ProductImageCategory.material_categories.each do |category| %>
+            <div class="form-group">
+              <label class="col-md-4 control-label">
+                <span><%= category.name %></span>
+                <div class="helper">最多<%= category.max_count %>张</div>
+              </label>
+              <div class="col-md-8">
+                <div class="images" data-category-id="<%= category.id %>" data-max-count="<%= category.max_count %>">
+                </div>
+                <div class="add">
+                  <i class="fa fa-plus"></i>
+                  <input type="file" accept="image/png, image/jpeg, image/gif" <%= 'multiple' if category.max_count > 1 %>>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary save">保存</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+default: &default
+  # 各平台的配置
+  # * language 只能为 en, zh-CN
+  # * 其它参数值必须是相应表中的 name 或 en_name
+  platform_settings:
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+staging:
+  <<: *default
+
+production:
+  <<: *default

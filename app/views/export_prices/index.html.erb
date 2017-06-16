@@ -1,0 +1,130 @@
+<%=
+  # 瓷砖、马赛克、卫浴
+  top_category_ids = [
+    ProductCategory.top_id(:tiles),
+    ProductCategory.top_id(:mosaic),
+    ProductCategory.top_id(:bathing),
+    ProductCategory.top_id(:furniture),
+    ProductCategory.top_id(:auxiliary_material),
+    ProductCategory.top_id(:material_exhibit),
+    ProductCategory.top_id(:floor),
+    ProductCategory.top_id(:stone),
+  ]
+
+  product_categories = ProductCategory.where(id: top_category_ids).to_a.sort_by do |category|
+    top_category_ids.index(category.id)
+  end
+
+  render 'search',
+    path: export_prices_path(product_category_id: @product_category.id),
+    product_categories: product_categories.map { |c| [c.name, c.id] }
+%>
+
+<ul class="nav-categories">
+  <% product_categories.each do |category| %>
+    <li class="<%= 'active' if category.id == @product_category.id %>">
+      <a href="<%= export_prices_path(product_category_id: category.id) %>">
+        <%= category.name %>
+      </a>
+    </li>
+  <% end %>
+</ul>
+
+<% if @product_category.price_units_count == 2 %>
+  <table class="table table-bordered table-striped table-condensed management">
+    <thead>
+      <tr>
+        <th rowspan="2">SKU</th>
+        <th colspan="2">面价</th>
+        <th colspan="2">非会员</th>
+        <th colspan="2">会员</th>
+        <th rowspan="2">操作</th>
+      </tr>
+      <tr>
+        <th>片/$</th>
+        <th>方/$</th>
+        <th>片/$</th>
+        <th>方/$</th>
+        <th>片/$</th>
+        <th>方/$</th>
+      </tr>
+    </thead>
+    <tbody class="text-center" data-api="<%= export_prices_path %>">
+      <% @skus.each do |sku| %>
+        <tr data-id="<%= sku.id %>">
+          <td><%= "#{sku.product&.product_no}-#{sku.level}" %></td>
+          <td>
+            <span><%= sku.piece_export_price&.price %></span>
+            <input type="text" class="form-control input-sm" name="price_unit[1][price]">
+            <input type="radio" hidden="hidden" name="active_price_unit[<%= sku.id %>]" value="2" checked>
+          </td>
+          <td>
+            <span><%= sku.sqm_export_price&.price %></span>
+            <input type="text" class="form-control input-sm" name="price_unit[2][price]">
+          </td>
+          <td>
+            <span><%= sku.piece_export_price&.nomember_price %></span>
+            <input type="text" class="form-control input-sm" name="price_unit[1][nomember_price]">
+          </td>
+          <td>
+            <span><%= sku.sqm_export_price&.nomember_price %></span>
+            <input type="text" class="form-control input-sm" name="price_unit[2][nomember_price]">
+          </td>
+          <td>
+            <span><%= sku.piece_export_price&.member_price %></span>
+            <input type="text" class="form-control input-sm" name="price_unit[1][member_price]">
+          </td>
+          <td>
+            <span><%= sku.sqm_export_price&.member_price %></span>
+            <input type="text" class="form-control input-sm" name="price_unit[2][member_price]">
+          </td>
+          <td>
+            <button class="btn btn-info btn-sm edit">编辑</button>
+            <button class="btn btn-success btn-sm save ladda-button" data-style="zoom-in" data-size="s">保存</button>
+            <button class="btn btn-default btn-sm cancle">取消</button>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <table class="table table-bordered table-striped table-condensed management">
+    <thead>
+      <tr>
+        <th>SKU</th>
+        <th>面价</th>
+        <th>非会员</th>
+        <th>会员</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody class="text-center" data-api="<%= single_price_path %>">
+      <% @skus.each do |sku| %>
+        <tr data-id="<%= sku.id %>">
+          <td><%= "#{sku.product&.product_no}-#{sku.level}" %>
+              <input type="hidden" name="sku_id" value="<%= sku.id %>" >
+          </td>
+          <td>
+            <span><%= sku.export_pri&.price %></span>
+            <input type="text" class="form-control input-sm" name="price_unit[price]">
+          </td>
+          <td>
+            <span><%= sku.export_pri&.nomember_price %></span>
+            <input type="text" class="form-control input-sm" name="price_unit[nomember_price]">
+          </td>
+          <td>
+            <span><%= sku.export_pri&.member_price %></span>
+            <input type="text" class="form-control input-sm" name="price_unit[member_price]">
+          </td>
+          <td>
+            <button class="btn btn-info btn-sm edit">编辑</button>
+            <button class="btn btn-success btn-sm save ladda-button" data-style="zoom-in" data-size="s">保存</button>
+            <button class="btn btn-default btn-sm cancle">取消</button>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<%= will_paginate @skus %>

@@ -1,0 +1,101 @@
+.page-main {
+  & > .form-horizontal {
+    margin: 20px 0;
+  }
+
+  div.form-horizontal .form-group img {
+    max-height: 10em;
+  }
+
+  .form-horizontal {
+    .form-group {
+      margin-left: 0;
+      margin-right: 0;
+
+      &.required > label {
+        position: relative;
+
+        &:after {
+          content: '*';
+          position: absolute;
+          top: 30%;
+          color: #ff0000;
+        }
+      }
+    }
+
+    .actions .alert {
+      margin: 0 0 10px 0;
+      padding: 5px 10px;
+    }
+
+    .btn + .btn {
+      margin-left: 20px;
+    }
+
+    .form-control.auto-width {
+      display: inline-block;
+      width: auto;
+    }
+
+    input[type=radio]:focus {
+      outline: none;
+    }
+
+    .bootstrap-tagsinput {
+      width: 100%;
+    }
+
+    .image-container {
+      position: relative;
+      display: inline-block;
+      min-height: 100px;
+      min-width: 100px;
+
+      input {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        height: 1px;
+        width: 1px;
+        opacity: 0;
+      }
+
+      span {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.1em;
+        color: #FFFFFF;
+        background-color: rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+      }
+
+      // 没有图片时始终显示
+      & > span:last-child {
+        display: flex;
+      }
+
+      img {
+        min-height: 100px;
+        min-width: 100px;
+        max-height: 15em;
+      }
+
+      @media (min-width: 768px) {
+        span {
+          display: none;
+        }
+
+        &:hover span {
+          display: flex;
+        }
+      }
+    }
+  }
+}

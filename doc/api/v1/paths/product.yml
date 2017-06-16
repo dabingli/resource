@@ -1,0 +1,189 @@
+/products:
+  get:
+    tags:
+      - Products
+    summary: 获取产品列表
+    description: |
+      获取产品列表，支持分页、排序、筛选
+
+      ### 排序
+
+      支持按以下字段排序：
+
+      * sku_id: SKU ID
+      * name: 产品名称。产品名称相同的会按 level 排序
+      * product_no: 产品编号。产品编号相同的会按 level 排序
+      * spec
+      * price
+      * created_at: 商品添加时间
+      * updated_at: 商品最近修改时间
+
+      排序参数格式为 "field:direction"，field 为以上字段之一，direction 为 asc/desc。direction 可省略，默认 asc
+
+      若未指定排序参数，默认按 updated_at 降序排序
+
+      ### 筛选
+
+      * 未指定分类时，只支持按关键字搜索，不支持其它筛选条件
+      * 指定分类时，可按以下条件筛选：
+        * search: 搜索关键字。只匹配产品名称、产品编号
+        * price: 价格范围，格式为 "最低价-最高价"，返回结果含最低价，不含最高价。最低价、最高价可为空。如 "-3"(< 3), "3-5"(>= 3, < 5), "5-"(>= 5)
+        * 接口返回的其它可用筛选条件（有子分类的，会包含子分类）
+
+      所有筛选条件都是可选的，不使用时不传递，或传递空字符串
+
+      ### 价格
+
+      只返回一个价格，即用户所能查看的最高阶价格（面价/非会员价/会员价）
+
+      若价格不存在或不合法（小于等于 0），返回 null
+
+    parameters:
+      - $ref: '#/parameters/site_code'
+      - $ref: '#/parameters/language'
+      - $ref: '#/parameters/warehouse'
+      - $ref: '#/parameters/user_id'
+      - $ref: '#/parameters/page'
+      - $ref: '#/parameters/page_size'
+      - name: sort_by
+        in: query
+        required: false
+        type: string
+        description: 排序，如 "sku_id", "name:desc"
+      - name: search
+        in: query
+        required: false
+        type: string
+        description: 搜索关键字
+      - name: product_category_id
+        in: query
+        required: false
+        type: integer
+        description: 分类 ID
+    <% filters = ProductCategory::FILTER_FIXTURES.values.flat_map(&:keys).uniq.sort %>
+    <% (filters - ['product_category_id']).each do |field| %>
+      - name: <%= field %>
+        in: query
+        required: false
+        type: <%=
+                case Product.column_for_attribute(field).type
+                when :boolean then 'boolean'
+                when :integer then 'integer'
+                else 'string'
+                end
+              %>
+        description: <%= Product.human_attribute_name(field) %>
+    <% end %>
+      - name: price
+        in: query
+        required: false
+        type: string
+        description: 价格范围
+
+    responses:
+      200:
+        description: 产品列表
+        schema:
+          type: object
+          required:
+            - total_count
+            - filters
+            - products
+          properties:
+            total_count:
+              type: integer
+              example: 100
+              description: 总数
+            current_filters:
+              type: array
+              description: 当前使用的筛选条件
+              items:
+                type: object
+                required:
+                  - name
+                  - title
+                  - value_name
+                properties:
+                  name:
+                    type: string
+                    example: material_id
+                    description: URL 中参数名称
+                  title:
+                    type: string
+                    example: 材质
+                    description: 显示名称
+                  value_name:
+                    type: string
+                    example: 瓷质
+                    description: 所选值名称
+            filters:
+              type: array
+              description: 可用筛选条件
+              items:
+                $ref: '#/definitions/ProductFilter'
+            products:
+              type: array
+              description: 产品列表
+              items:
+                $ref: '#/definitions/ProductListItem'
+
+/products/{sku_id}:
+  get:
+    tags:
+      - Products
+    summary: 获取产品详情
+    description: |
+      获取产品详情
+
+      __同时返回同一宝贝中的其它商品的详情__
+
+      不同种类的商品拥有的属性不同，暂只返回值不为 null 的属性
+
+      ### 图片
+
+      图片有多种类型，同一类型的已排好序。类型如下：
+
+    <%- ProductImageCategory.order(:position).each do |category| -%>
+      * <%= category.name %>（最多 <%= category.max_count %> 张）
+    <%- end -%>
+      * 系列图（最多 1 张）
+
+      暂时返回所有图片，待明确用途后，再按需返回
+
+      ### 价格
+
+      价格信息根据用户身份返回：
+
+      * 未登录，只返回面价
+      * 登录但非会员，返回面价、非会员价
+      * 登录且是会员，返回面价、非会员价、会员价
+
+      ### 购物须知与常见问题
+      * 购物须知 返回字段guide
+      * 常见问题 返回字段problem
+
+    parameters:
+      - $ref: '#/parameters/site_code'
+      - $ref: '#/parameters/language'
+      - $ref: '#/parameters/user_id'
+      - name: sku_id
+        in: path
+        required: true
+        type: integer
+        description: SKU ID
+      - name: single
+        in: query
+        required: false
+        type: integer
+        enum:
+          - 0
+          - 1
+        description: 是否返回单条数据。默认 0
+
+    responses:
+      200:
+        description: 产品详情
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/Product'

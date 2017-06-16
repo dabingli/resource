@@ -1,0 +1,88 @@
+<%= form_for(@domestic_price, html: {class: 'form-horizontal ajax-submit'}) do |f| %>
+  <input type="hidden" name="redirect_to" value="<%= request.headers[:referer] %>">
+
+  <div class="form-group">
+    <label class="col-sm-3 col-md-3 col-lg-2 control-label">商品名称</label>
+    <div class="col-sm-8 col-md-8 col-lg-6">
+      <p class="form-control-static"><%= @domestic_price.sku&.product&.name %></p>
+    </div>
+  </div>
+  <% if @domestic_price.new_record? %>
+    <%= fields_for @domestic_price.sku do |f| %>
+      <div class="form-group required">
+        <%= f.label :level, class: 'col-sm-3 col-md-3 col-lg-2 control-label' %>
+        <div class="col-sm-8 col-md-8 col-lg-6">
+          <%= f.hidden_field(:product_id) %>
+          <%=
+            f.select(
+              :level,
+              options_for_select(@levels),
+              { prompt: '请选择' },
+              class: 'form-control',
+              required: 'required'
+            )
+          %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+  <%# 更新时禁止修改 level，避免 sku 改变 %>
+    <div class="form-group">
+      <label class="col-sm-4 col-md-3 col-lg-2 control-label">等级</label>
+      <div class="col-sm-8 col-md-8 col-lg-6">
+        <p class="form-control-static"><%= @domestic_price.sku&.level_text %></p>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group required">
+    <label for="site_id" class="col-sm-3 col-md-3 col-lg-2 control-label">平台</label>
+    <div class="col-sm-8 col-md-8 col-lg-6">
+      <%=
+        f.select(
+          :site_id,
+          @sites,
+          {prompt: '请选择'},
+          class: 'form-control',
+          required: 'required'
+        )
+      %>
+    </div>
+  </div>
+
+  <div class="form-group required">
+    <label for="warehouse_id" class="col-sm-3 col-md-3 col-lg-2 control-label">仓库</label>
+    <div class="col-sm-8 col-md-8 col-lg-6">
+      <%=
+        f.select(
+          :warehouse_id,
+          @warehouses,
+          {prompt: '请选择'},
+          class: 'form-control',
+          required: 'required'
+        )
+      %>
+    </div>
+  </div>
+
+  <div class="form-group required">
+    <%= f.label :nomember_price, class: 'col-sm-3 col-md-3 col-lg-2 control-label' %>
+    <div class="col-sm-8 col-md-8 col-lg-6">
+      <%= f.number_field :nomember_price, class: 'form-control', required: true, step: 'any' %>
+    </div>
+  </div>
+
+  <div class="form-group required">
+    <%= f.label :member_price, class: 'col-sm-3 col-md-3 col-lg-2 control-label' %>
+    <div class="col-sm-8 col-md-8 col-lg-6">
+      <%= f.number_field :member_price, class: 'form-control', required: true, step: 'any' %>
+    </div>
+  </div>
+
+  <div class="form-group actions">
+    <div class="col-sm-offset-3 col-md-offset-3 col-lg-offset-2 col-sm-6">
+      <button type="submit" class="btn btn-primary"><%= @domestic_price.new_record? ? '添加' : '更新' %></button>
+      <a href="<%= request.headers[:referer] || domestic_prices_path %>" class="btn btn-warning">返回</a>
+    </div>
+  </div>
+<% end %>

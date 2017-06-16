@@ -1,0 +1,34 @@
+<%= form_for(@search, url: path, method: 'GET', enforce_utf8: false, html: {class: 'form-inline search'}) do |f| %>
+  <div class="form-group">
+    <%= f.label 'product.name|product.product_no', '产品编号/名称' %>
+    <%= f.text_field 'product.name|product.product_no', class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'level', '等级' %>
+    <%=
+      f.select(
+        :level,
+        Sku::LEVEL_TO_TEXT.to_a.map(&:reverse),
+        {include_blank: '全部',},
+        class: 'form-control'
+      )
+    %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'product_category_id', '产品分类' %>
+    <%=
+      f.select(
+        :product_category_id,
+        product_categories,
+        {},
+        {class: 'form-control'}
+      )
+    %>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-info">搜索</button>
+  </div>
+<% end %>

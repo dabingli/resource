@@ -1,0 +1,68 @@
+.page-main {
+  // 提示
+  & > .alert {
+    margin: 10px 0;
+
+    ul {
+      padding-left: 20px;
+    }
+
+    & + h1 {
+      padding-top: 5px;
+    }
+  }
+
+  // navtab
+  & > .nav-tabs {
+    margin: 10px 0;
+    font-size: 18px;
+
+    a:hover, a:focus {
+      outline: none;
+    }
+  }
+
+  // 搜索表单
+  & > form.search {
+    margin: 20px 0;
+
+    input.form-control {
+      max-width: 150px;
+    }
+
+    label {
+      font-weight: normal;
+    }
+
+    .form-group {
+      margin-right: 20px;
+    }
+  }
+
+  // 标题
+  & > h1 {
+    margin: 0;
+    padding: 15px 0;
+    font-size: 24px;
+
+    small {
+      font-size: 15px;
+      display: inline-block;
+      padding-left: 4px;
+      font-weight: 300;
+      color: #777777;
+    }
+    a {
+      font-size: 15px;
+    }
+  }
+
+  & > h1 + .alert {
+    margin-bottom: 10px;
+  }
+
+  // 添加按钮
+  & > .add:first-child {
+    margin-top: 20px;
+  }
+}

@@ -1,0 +1,15 @@
+Warehouse.seed(:id,
+  { id: 1,  position: 1,  name: "佛山", en_name: "Foshan" },
+  { id: 2,  position: 2,  name: "深圳", en_name: "Shenzhen" },
+  { id: 3,  position: 3,  name: "重庆", en_name: "Chongqing" },
+  { id: 4,  position: 4,  name: "成都", en_name: "Chengdu" },
+  { id: 5,  position: 5,  name: "天津", en_name: "Tianjin" },
+  { id: 6,  position: 6,  name: "武汉", en_name: "Wuhan" },
+  { id: 7,  position: 7,  name: "长沙", en_name: "Changsha" },
+  { id: 8,  position: 8,  name: "南京", en_name: "Nanjing" },
+  { id: 9,  position: 9,  name: "杭州", en_name: "Hangzhou" },
+  { id: 10, position: 10, name: "南宁", en_name: "Nanning" },
+  { id: 11, position: 11, name: "福州", en_name: "Fuzhou" },
+  { id: 12, position: 12, name: "海南", en_name: "Hainan" },
+  { id: 13, position: 13, name: "江阴", en_name: "Jiangyin" }
+)

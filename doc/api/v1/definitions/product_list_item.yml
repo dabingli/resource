@@ -1,0 +1,63 @@
+ProductListItem:
+  type: object
+  required:
+    - product_category_id
+    - product_category_name
+    - sku_id
+    - product_no
+    - level
+    - name
+  properties:
+    product_category_id:
+      type: integer
+      example: 26
+      description: 分类 ID
+    product_category_name:
+      type: string
+      example: 全抛大理石
+      description: 分类名称
+    sku_id:
+      type: integer
+      example: 1
+      description: SKU ID
+    product_no:
+      type: string
+      example: L5D80006
+      description: 产品编号
+    level:
+      type: string
+      example: 'A'
+      description: 等级，值为 A/B/C/D
+    name:
+      type: string
+      example: 新卡布奇诺
+      description: 产品名称
+    spec:
+      type: string
+      example: 800x800
+      description: 产品规格（可能为空）
+    brand:
+      type: string
+      example: 玛奇朵
+      description: 品牌（可能为空）
+    use_place:
+      type: string
+      example: 浴室
+      description: 用途（可能为空）
+    price:
+      type: string
+      example: '88.0'
+      description: 价格（可能为空）。受是否登录、是否是会员影响
+    price_unit:
+      type: string
+      example: 方
+      description: 价格单位（可能为空）
+    picture:
+      type: string
+      format: url
+      example: http://ofqnkkwvx.bkt.clouddn.com/resource/65c18a15fae5306a60c80f5f7957a637
+      description: 图片地址（可能为空）
+    warehouse:
+      type: string
+      example: 佛山
+      description: 仓库（可能为空）。【国内网站】

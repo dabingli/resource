@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row text-center">
+    <img src='<%= image_url("com/fslola003.png") %>' alt="LOGO">
+    <h2>资源管理中心</h2>
+  </div>
+
+  <div class="row">
+    <%= form_tag do %>
+      <input type="hidden" name="redirect_url" value="<%= params[:redirect_url] %>">
+      <div class="col-md-2 col-xs-2 text-right">
+        <img src='<%= image_url("com/login.jpg") %>' alt="login">
+      </div>
+      <div class="col-md-4 col-xs-4">
+        <div class="employee-number">
+          <input type="text" name="employee_number" placeholder="工号" required>
+
+          <div class="message"></div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-xs-4">
+        <div class="password">
+          <input type="password" name="password" placeholder="密码" required>
+        </div>
+      </div>
+
+      <div class="col-md-2 col-xs-2 h150">
+        <img src='<%= image_url("com/login2.jpg") %>' alt="login">
+      </div>
+
+      <input type="submit">
+    <% end %>
+  </div>
+</div>
+
+<footer>
+  COPYRIGHT © 2013-<%= Time.new.year %>佛山市方圆陶瓷有限公司 版权所有
+  <a href="http://www.miitbeian.gov.cn/publish/query/indexFirst.action">粤ICP备12001574号-2</a>
+</footer>

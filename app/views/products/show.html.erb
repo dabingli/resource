@@ -1,0 +1,86 @@
+<div class="form-inline product show">
+  <!-- 面包屑导航 -->
+  <ol class="breadcrumb">
+    <% categories = [@product.product_category] + @product.product_category.ancestor_categories %>
+
+    <% categories.reverse_each do |category| %>
+     <li class="active"><%= category.name %></li>
+    <% end %>
+  </ol>
+
+  <%= fields_for(@product) do |f| %>
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#zh-CN">中文</a></li>
+      <% Product::MAINTAINED_LANGUAGES.each do |language| %>
+        <li><a data-toggle="tab" href="#<%= language.foreign %>"><%= language.name %></a></li>
+      <% end %>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane active" id="zh-CN">
+        <div class="category-selector">
+          <div class="form-group">
+            <%= f.label :product_category_id %>
+            <%= f.text_field :product_categories_text, class: 'form-control', disabled: 'disabled' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :product_no %>
+          <%= f.text_field :product_no, class: 'form-control', disabled: 'disabled' %>
+        </div>
+
+        <% @product.product_category.product_fields.each do |field| %>
+          <% if field.name.nil? %>
+            <div class="form-group"></div>
+            <% next %>
+          <% elsif field.name == '优等品' %>
+            <div class="form-group">
+              <label>等级</label>
+              <input type="text" value="优等品" class="form-control", disabled="disabled">
+            </div>
+            <% next %>
+          <% end %>
+
+          <div class="form-group">
+            <%= f.label field.name, field.title %>
+            <%
+              value =
+                if field.name =~ /_id$/
+                  @product.send(field.name.sub(/_id$/, ''))&.name
+                else
+                  value = @product.send field.name
+                  if value == true
+                    '是'
+                  elsif value == false
+                    '否'
+                  else
+                    value
+                  end
+                end
+            %>
+            <input type="text" class="form-control" value="<%= value %>" disabled>
+          </div>
+        <% end %>
+      </div>
+
+      <% Product::MAINTAINED_LANGUAGES.each do |language| %>
+        <div class="tab-pane" id="<%= language.foreign %>">
+          <%= f.fields_for :product_languages, @product.language_record(language.id) do |f| %>
+            <% @product.product_category.international_fields.each do |field_name| %>
+              <div class="form-group">
+                <%= f.label field_name %>
+                <input class="form-control" value="<%= f.object.send field_name %>" disabled="disabled">
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="form-group actions">
+    <a href="<%= edit_product_path(@product) %>" class="btn btn-info">编辑</a>
+    <a href="<%= products_or_products_suit_path(@product.product_category_id) %>" class="btn btn-warning">返回</a>
+  </div>
+</div>

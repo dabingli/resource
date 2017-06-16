@@ -1,0 +1,60 @@
+body.export-prices .management {
+  // 避免切换编辑状态时跳动
+  table-layout: fixed;
+
+  .form-control,
+  .radio-inline,
+  .save,
+  .cancle {
+    display: none;
+  }
+
+  tr.editing {
+    td > span,
+    .edit {
+      display: none;
+    }
+
+    .form-control,
+    .radio-inline,
+    .save,
+    .cancle {
+      display: inline-block;
+    }
+
+    .form-control {
+      width: 100%;
+      max-width: 70px;
+      text-align: center;
+    }
+  }
+}
+body.export-prices .nav-categories {
+  list-style: none;
+  padding: 0;
+
+  li {
+    display: inline-block;
+    margin: 0 5px 0 0;
+    font-size: 18px;
+    line-height: 2;
+
+    &.active {
+      background-color: #DDDDDD;
+      border-radius: 3px;
+    }
+
+    a {
+      padding: 0 10px;
+
+      &:hover, &:focus {
+        text-decoration: none;
+        outline: none;
+      }
+    }
+
+    &.disabled a {
+      color: inherit;
+    }
+  }
+}

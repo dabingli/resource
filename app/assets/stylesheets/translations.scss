@@ -1,0 +1,13 @@
+body.translations {
+  .nav-tabs {
+    font-size: 16px;
+
+    a {
+      padding: 8px 10px;
+
+      &:hover, &:focus {
+        outline: none;
+      }
+    }
+  }
+}

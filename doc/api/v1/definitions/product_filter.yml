@@ -1,0 +1,32 @@
+ProductFilter:
+  type: object
+  required:
+    - name
+    - title
+    - values
+  properties:
+    name:
+      type: string
+      example: material_id
+      description: 参数名称（用于 URL 中参数名称）
+    title:
+      type: string
+      example: 材质
+      description: 标题（用于显示）
+    values:
+      type: array
+      description: 可选值列表
+      items:
+        type: object
+        required:
+          - id
+          - name
+        properties:
+          id:
+            type: integer
+            example: 1
+            description: ID（用于 URL 中参数值）
+          name:
+            type: string
+            example: 瓷质
+            description: 名称（用于显示）

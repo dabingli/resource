@@ -1,0 +1,17 @@
+ProductCategory:
+  type: object
+  required:
+    - id
+    - name
+  properties:
+    id:
+      type: integer
+      description: 分类 ID
+    name:
+      type: string
+      description: 分类名称
+    children:
+      type: array
+      description: 子分类数组。若无子分类，则无此属性
+      items:
+        $ref: '#/definitions/ProductCategory'

@@ -1,0 +1,66 @@
+body.login {
+  background: #393939;
+  padding: 80px 0 60px 0;
+  height: 100%;
+  position: relative;
+
+  h2 {
+    color: #fff;
+    margin: 20px 0;
+  }
+
+  form > div {
+    height: 150px;
+    padding: 0 5px;
+  }
+
+  .employee-number {
+    height: 100%;
+    background-color: #90bb4f;
+  }
+
+  .password {
+    height: 100%;
+    background-color: #f5c147;
+  }
+
+  input {
+    height: 40px;
+    width: 60%;
+    margin-top: 55px;
+    margin-left: 20%;
+  }
+
+  input[type=submit] {
+    display: none;
+  }
+
+  img {
+    cursor: pointer;
+  }
+
+  .message {
+    text-align: center;
+    margin-top: 10px;
+    color: #a94442;
+    font-size: 16px;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  footer {
+    position: absolute;
+    left: 0;
+    bottom: 20px;
+    width: 100%;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+
+    a, a:visited {
+      color: inherit;
+    }
+  }
+}

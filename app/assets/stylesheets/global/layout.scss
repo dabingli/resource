@@ -1,0 +1,376 @@
+$sidebar-width: 180px;
+$mini-sidebar-width: 50px;
+$header-height: 50px;
+
+html {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  font-family: 'Microsoft YaHei', 'Open Sans', Arial, 'Lantinghei SC', 'Hiragino Sans GB', 'Wenquanyi Micro Hei', STXihei, SimSun, Heiti, sans-serif;
+  // background-color: #ECF0F5;
+  background-color: #fff;
+  color: #333;
+  transition: min-height 0.2s ease-in-out;
+}
+
+/*
+  侧边栏显示逻辑：
+    屏幕宽度大于768px
+      1. 默认显示侧边栏
+      2. header中logo显示较大的内容
+      3. 折叠侧边栏后显示迷你侧边栏（只显示第一级导航的图标），logo显示较小内容
+      4. 通过在body上添加/删除sidebar-collapsed类区分状态
+    屏幕宽度小于768px
+      1. 默认完全不显示侧边栏
+      2. header中logo显示到header的中间，切换侧边栏显示的按钮靠左显示
+      3. 展开侧边栏后logo变回靠左显示
+      4. 通过在body上添加/删除sidebar-opened类区分状态
+ */
+
+.page-header {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: #3C8DBC;
+
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  .logo {
+    float: left;
+    width: $sidebar-width;
+    height: $header-height;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    line-height: $header-height;
+    color: #FFFFFF;
+    background-color: #367FA9;
+    text-align: center;
+    text-decoration: none;
+    transition: left 0.3s ease-in-out, width 0.3s ease-in-out;
+    overflow: hidden;
+
+    .mini {
+      display: none;
+    }
+  }
+
+  .sidebar-toggle {
+    float: left;
+    padding: 0 15px;
+    line-height: $header-height;
+    color: #FFFFFF;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #367FA9;
+    }
+  }
+
+  nav {
+    margin-bottom: 0px;
+    margin-left: $sidebar-width;
+    border-radius: 0px;
+    transition: margin-left 0.3s ease-in-out;
+
+    &:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+  }
+
+  .user-info {
+    float: right;
+    margin-right: 10px;
+    padding: 0 15px;
+
+    &.open, &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .dropdown-toggle {
+      display: block;
+      height: 100%;
+      line-height: $header-height;
+      color: #FFFFFF;
+      cursor: pointer;
+    }
+
+    .avatar {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      margin-right: 5px;
+      margin-top: -3px;
+    }
+
+    .dropdown-menu {
+      display: block;
+      top: 95%;
+      min-width: 8em;
+      text-align: center;
+      background-color: #FFFFFF;
+      visibility: hidden;
+      transform: scale(0);
+      transform-origin: 80% 0;
+      transition: transform 0.3s cubic-bezier(0.31, 0.57, 0.68, 1.36), visibility 0.3s cubic-bezier(0.31, 0.57, 0.68, 1.36);
+
+      a {
+        padding: 0;
+        line-height: 30px;
+        color: #666666;
+
+        :hover {
+          background-color: #F1F1F2;
+        }
+      }
+    }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+
+      .dropdown-menu {
+        visibility: visible;
+        transform: scale(1);
+      }
+    }
+  }
+}
+
+.page-sidebar {
+  position: absolute;
+  top: $header-height;
+  left: 0;
+  bottom: 0;
+  width: $sidebar-width;
+  padding-bottom: 10px;
+  background-color: #222D32;
+  transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+  z-index: 1;
+
+  .sidebar {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    white-space: nowrap;
+
+    a {
+      position: relative;
+      display: block;
+      color: #B8C7CE;
+
+      &:hover {
+        color: #FFFFFF;
+      }
+
+      &:hover,
+      &:active,
+      &:focus {
+        outline: none;
+        text-decoration: none;
+      }
+    }
+
+    & > li > a {
+      padding: 12px 5px 12px 15px;
+      border-left: 3px solid transparent;
+    }
+
+    & > li.active > a,
+    & > li:hover > a {
+        background: #1E282C none repeat scroll 0% 0%;
+        border-left-color: #3C8DBC;
+    }
+
+    .treeview-menu > li > a {
+      color: #8AA4AF;
+      padding: 5px 5px 5px 15px;
+    }
+
+    li.active > a,
+    li:hover > a {
+      color: #FFFFFF;
+    }
+
+    li > a > .fa:first-child,
+    li > a > .glyphicon:first-child {
+      width: 20px;
+    }
+
+    li > a > .fa-angle-left {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      margin-top: -7px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    li.active > a > .fa-angle-left {
+      transform: rotate(-90deg);
+    }
+
+    .treeview-menu {
+      height: 0;
+      list-style: none;
+      padding-left: 5px;
+      transition: height 0.3s ease-in-out;
+      overflow: hidden;
+
+      .treeview-menu {
+        padding-left: 20px;
+      }
+    }
+
+    li.active > .treeview-menu {
+      height: auto;
+    }
+
+    // 多级菜单
+    .treeview .treeview,
+    .treeview .treeview ~ li {
+      padding-left: 10px;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  body.sidebar-collapsed {
+    .page-header .logo {
+      width: $mini-sidebar-width;
+      font-size: 18px;
+
+      .mini {
+        display: inline;
+      }
+
+      .large {
+        display: none;
+      }
+    }
+
+    .page-header nav,
+    .page-sidebar + .page-main {
+      margin-left: $mini-sidebar-width;
+    }
+
+    .page-sidebar {
+      width: $mini-sidebar-width;
+    }
+
+    .page-sidebar > .sidebar {
+      li {
+        position: relative;
+      }
+
+      & > li > a > span,
+      .fa-angle-left {
+        display: none;
+      }
+
+      li.active > .treeview-menu {
+        height: 0;
+      }
+
+      & > li > .treeview-menu {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-bottom-right-radius: 4px;
+      }
+
+      & > li > a > span {
+        border-top-right-radius: 4px;
+      }
+
+      & > li:not(.treeview) > a > span {
+        border-bottom-right-radius: 4px;
+      }
+
+      & > li > a > span,
+      & > li > .treeview-menu,
+      & > li.active > .treeview-menu {
+        display: none;
+        position: absolute;
+        left: $mini-sidebar-width;
+        width: 180px;
+        height: auto;
+      }
+
+      & > li:hover > a > span,
+      & > li:hover > .treeview-menu {
+        display: block !important;
+      }
+      & > li:hover > a > span {
+        top: 0;
+        margin-left: -3px;
+        padding: 12px 5px 12px 20px;
+        background-color: inherit;
+      }
+
+      & > li:hover > .treeview-menu {
+        top: 44px;
+        margin-left: 0;
+        background-color: #2C3B41;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .page-header {
+    .logo {
+      float: none;
+      position: absolute;
+      top: 0;
+      left: calc(50% - #{$sidebar-width/2});
+      background-color: transparent;
+    }
+
+    nav {
+      margin-left: 0;
+    }
+  }
+
+  .page-sidebar {
+    transform: translateX(-230px);
+  }
+
+  .page-sidebar + .page-main {
+    margin-left: 0;
+  }
+
+  body.sidebar-opened {
+    .page-header {
+      .logo {
+        float: left;
+        position: static;
+        background-color: #367FA9;
+      }
+
+      nav {
+        margin-left: 0;
+      }
+    }
+
+    .page-sidebar {
+      transform: translateX(0);
+    }
+
+    .page-main {
+      margin-left: $sidebar-width;
+    }
+  }
+}
+
+.page-main {
+  margin-left: $sidebar-width;
+  padding: 0 1em 1em 1em;
+  min-height: calc(100% - #{$header-height});
+  transition: margin 0.3s ease-in-out;
+}

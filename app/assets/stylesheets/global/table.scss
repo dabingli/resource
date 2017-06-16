@@ -1,0 +1,41 @@
+.page-main .management.table {
+  margin: 15px 0;
+
+  thead > tr > th {
+    color: #fff;
+    background-color: #78909C;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  thead > tr:first-child th[rowspan],
+  thead > tr:first-child th[rowspan] ~ th {
+    border-bottom-width: 0;
+  }
+
+  tbody > tr > td {
+    vertical-align: middle;
+
+    img {
+      max-height: 200px;
+    }
+
+    a {
+      // 避免一个链接跨两行
+      white-space: nowrap;
+    }
+  }
+
+  // 分页
+  & + .pagination {
+    margin: 10px 0;
+    display: block;
+    text-align: center;
+
+    & > * {
+      margin: 0 2px;
+      padding: 0 2px;
+    }
+  }
+}

@@ -1,0 +1,157 @@
+<%= render('search', path: baby_managements_path, site_category: params[:site_category]) %>
+
+<div class="tab-content">
+  <!-- 未选平台區開始 -->
+  <div class="tab-pane active">
+    <table class="table table-bordered table-striped management">
+      <thead>
+        <tr>
+          <th>宝贝编号</th>
+          <th>SKU</th>
+          <th>品类</th>
+          <th>归类</th>
+          <th>类别</th>
+          <th>组合</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @baby_managements.each do |baby_management| %>
+          <tr>
+            <td class="text-center"><%= baby_management.baby_no %></td>
+            <td class="name"><%= baby_management.sku.product.product_no %>-<%= baby_management.sku.level %></td>
+            <% parent = ProductCategory.find(Product.find(baby_management.sku.product_id).product_category_id).id %>
+            <% child = ProductCategory.find(Product.find(baby_management.sku.product_id).product_category_id).parent_id %>
+
+            <!-- 品类開始 -->
+            <% if child == 1 or child == 101 or child == 201 or child == 301 %>
+              <td><%= Product.find(baby_management.sku.product_id).product_category.try(:name) %></td>
+            <% elsif child == 2 or child == 5 or child == 7 or child == 8 or child == 9 or child == 10 or
+                     child == 11 or child == 12 or child == 13 or child == 14 or child == 15 %>
+              <td><%= ProductCategory.find(2).name %></td>
+            <% elsif parent == 28 or parent == 29 %><td><%= ProductCategory.find(3).name %></td>
+            <% elsif parent == 30 or parent == 31 %><td><%= ProductCategory.find(4).name %></td>
+            <% elsif parent == 32 or parent == 33 %><td><%= ProductCategory.find(6).name %></td>
+            <% elsif child == 202 %><td><%= ProductCategory.find(202).name %></td>
+            <% elsif child == 212 %><td><%= ProductCategory.find(203).name %></td>
+            <% elsif child == 204 %><td><%= ProductCategory.find(204).name %></td>
+            <% elsif child == 205 %><td><%= ProductCategory.find(205).name %></td>
+            <% elsif child == 206 %><td><%= ProductCategory.find(206).name %></td>
+            <% elsif child == 248 %><td><%= ProductCategory.find(248).name %></td>
+            <% elsif child == 302 %><td><%= ProductCategory.find(302).name %></td>
+            <% elsif child == 303 %><td><%= ProductCategory.find(303).name %></td>
+            <% elsif child == 305 %><td><%= ProductCategory.find(305).name %></td>
+            <% else %><td></td>
+            <% end %>
+            <!-- 品类結束 -->
+
+            <!-- 归类開始 -->
+            <% if child == 2 or child == 3 or child == 4 or child == 6 or child == 8 or
+                  child == 202 or child == 204 or child == 205 or child == 206 or
+                  child == 248 or child == 302 or child == 303 or child == 305 %>
+              <td><%= Product.find(baby_management.sku.product_id).product_category.try(:name) %></td>
+            <% elsif parent == 16 or parent == 17 or parent == 18 %><td><%= ProductCategory.find(9).name %></td>
+            <% elsif parent == 19 or parent == 20 or parent == 328 %><td><%= ProductCategory.find(10).name %></td>
+            <% elsif parent == 21 or parent == 22 or parent == 23 or parent ==24 %>
+              <td><%= ProductCategory.find(11).name %></td>
+            <% elsif parent == 25 or parent == 26 or parent == 27 or parent == 41 %><td><%= ProductCategory.find(12).name %></td>
+            <% elsif child == 212 %><td><%= ProductCategory.find(212).name %></td>
+            <% else %><td></td>
+            <% end %>
+            <!-- 归类結束 -->
+
+            <!-- 类别開始 -->
+            <% if child == 9 or child == 10 or child == 11 or child == 12 or child == 212 %>
+              <td><%= Product.find(baby_management.sku.product_id).product_category.try(:name) %></td>
+            <% else %>
+              <td></td>
+            <% end %>
+            <!-- 类别結束 -->
+            <td class="text-center">
+              <span>
+                <a data-toggle="modal" data-target="#EditModal" data-hall="<%= baby_management.to_json %>" class="editModal">编辑</a>
+              </span>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= will_paginate @baby_managements, :params => {:site_category_id => params[:site_category_id] == nil ? "nil" : params[:site_category_id] } %>
+  </div>
+  <!-- 未选平台區結束 -->
+</div>
+
+<div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title text-center" id="myModalLabel"></h4>
+      </div>
+      <div class="modal-body">
+        <div class="edit_from"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 寶貝編號編輯畫面開始 -->
+<script>
+  $(function () {
+    $('#tab a:first').tab('show');
+  })
+
+  $('#tab a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+  })
+
+  $(".editModal").click(function(){
+    var baby_data = $(this).data("hall");
+    if(baby_data.baby_no == null){
+      baby_data.baby_no = '';
+    }
+    var textl = $(this).closest('tr').find('td.name').text()
+    $('#myModalLabel').text("SKU:"+textl)
+
+    $(".edit_from").empty().append(
+      '<form style="padding: 14px;" action="/baby_managements/'+baby_data.id+'" method="post">'+
+        '<input type="hidden" name="_method" value="patch">'+
+        '<%= hidden_field_tag :authenticity_token, form_authenticity_token %>'+
+        '<div class="form-group">'+
+          '<label class="control-label">编辑宝贝编号:</label><br>'+
+          '<input class="form-control" type="number" value="'+baby_data.baby_no+'" name="baby_no" id="baby_management_name">'+
+          '</div>'+
+          '<input type="hidden" name="site_id" value="<%= @site_id %>">'+
+          '<input type="hidden" name="sku_id" value="'+baby_data.sku_id+'">'+
+        '<div class="modal-footer">'+
+          '<button type="button" class="btn btn-default" data-dismiss="modal">返回</button>'+
+          '<input type="submit" name="commit" value="确定" class="btn btn-primary">'+
+        '</div>'+
+      '</form>'
+    );
+   
+    $.ajax({
+      type: "GET",
+      url:"/baby_managements/"+baby_data.sku_id+"/site_skus" ,
+      dataType: 'json',
+      success:function(result){
+        var text = result.data;
+
+        var site_id = result.data;
+        $.each(site_id,function(i,n){
+          var input = $("#inpu").find("input");
+          $.each(input,function(i){
+            var id = input[i]["id"];
+            if(id == n){
+              $("#"+id+"").removeAttr("disabled");
+            }
+          })
+        })
+      }
+    })
+
+  })
+</script>
+<!-- 寶貝編號編輯畫面結束 -->

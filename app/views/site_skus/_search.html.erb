@@ -1,0 +1,29 @@
+<%= form_for(@search, url: path, method: 'GET', enforce_utf8: false, html: {class: 'form-inline search'}) do |f| %>
+  <div class="form-group">
+    <%= f.label 'product.name|product.product_no', '产品编号/名称' %>
+    <%= f.text_field 'product.name|product.product_no', class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'product.spec', '产品规格' %>
+    <%= f.text_field 'product.spec', class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'site_skus.site_id', '平台' %>
+    <%=
+      f.collection_select(
+        'site_skus.site_id',
+        @sites,
+        :id,
+        :name,
+        {include_blank: '全部'},
+        class: 'form-control'
+      )
+    %>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-info">搜索</button>
+  </div>
+<% end %>

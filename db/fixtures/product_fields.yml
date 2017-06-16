@@ -1,0 +1,877 @@
+# 公用的字段，不要再单独列出
+  # 分类信息:
+  # product_no:
+
+# 根分类：瓷砖
+1:
+  name:
+  product_origin:
+    title: 产地
+  description:
+  spec:
+  brand:
+  material_id:
+  surface_craft_id:
+  water_absrp_rate_id:
+  ceramics_thickness:
+  shape_id:
+  color_id:
+  cases_per_pallet:
+  base_unit_id:
+  unit_weight:
+  unit_area:
+    title: 单位面积
+  business_unit_id:
+  packing_unit:
+  package_weight:
+  rim_category_id:
+
+# 根分类：马赛克
+101:
+  name:
+  product_origin:
+    title: 产地
+  description:
+  spec:
+  brand:
+  material_id:
+  surface_craft_id:
+  water_absrp_rate_id:
+  ceramics_thickness:
+    title: 粒子厚度
+  shape_id:
+    title: 粒子形状
+  color_id:
+  cases_per_pallet:
+    title: 打托数量(箱/托)
+  base_unit_id:
+  unit_weight:
+  unit_area:
+    title: 单位面积(m*m)
+  business_unit_id:
+  packing_unit:
+    title: 包装单位(片/箱)
+  package_weight:
+  rim_category_id:
+
+# 根分类：卫浴
+201:
+  brand:
+  product_origin:
+    title: 产地
+
+# 浴室柜
+202:
+  product_type_id:
+  brand:
+  product_origin:
+    title: 产地
+  product_style_id:
+  material_id:
+  whole_material_id:
+  color_id:
+    title: 涂装颜色
+  mesa_style_id: 
+  has_mirror_lamp:
+    title: 是否含镜灯
+  main_cabinet_range_id:
+  main_cabinet_size:
+  mirror_cabinet_range_id:
+  mirror_cabinet_size:
+  side_cabinet_range_id:
+  side_cabinet_size:
+  installation_method_id:
+  base_unit_id:
+  unit_area:
+    title: 单位体积(m³)
+  unit_weight:
+  package_method_id:
+    title: 包装
+  package_dimension:
+  package_weight:
+  packing_unit:
+    title: 包装单位(件/箱)
+
+# 陶瓷洁具
+203:
+  product_type_id:
+  brand:
+  product_origin:
+    title: 产地
+  material_id:
+  surface_craft_id:
+    title: 釉面
+  flush_method_id:
+    title: 排水方式
+  flush_control_method_id:
+  pits_distance_id:
+    title: 排污孔距（mm）
+  tap_hole_id:
+    title: 龙头开孔数
+  spec_size_id:
+    title: 产品规格范围
+  spec:
+    title: 产品尺寸（mm）
+  base_unit_id:
+  unit_area:
+    title: 单位体积(m³)
+  unit_weight:
+  package_method_id:
+    title: 包装
+  package_dimension:
+  package_weight:
+  packing_unit:
+    title: 包装单位(件/箱)
+
+# 智能座便器、普通座便器
+[240, 241]:
+  product_type_id:
+  brand:
+  product_origin:
+    title: 产地
+  material_id:
+  surface_craft_id:
+    title: 釉面
+  flush_method_id:
+    title: 排水方式
+  drainage_method_id:
+    title: 排水方向
+  flush_volume_id:
+    title: 冲水量(l)
+  pits_distance_id:
+    title: 排污孔距（mm）
+  has_cover_damper:
+  power_id:
+  capacity_id:
+  seat_power_id:
+  has_heating:
+  safety_device_id:
+  spec_size_id:
+    title: 产品规格范围
+  spec:
+    title: 产品尺寸(mm)
+  base_unit_id:
+  unit_area:
+    title: 单位体积(m³)
+  unit_weight:
+  package_method_id:
+    title: 包装
+  package_dimension:
+  package_weight:
+  packing_unit:
+
+#204休闲浴房
+204:
+  product_type_id:
+  brand:
+  product_origin:
+    title: 产地
+  material_id:
+    title: 边框主材
+  painting_process:
+    title: 边框工艺
+  shape_id:
+    title: 房体形状
+  door_opening_method_id:
+    title: 开门方式
+  chassis_material_id:
+    title: 底盆
+  has_steam:
+    title: 是否蒸汽功能
+  has_water_bend:
+    title: 是否配备房内淋浴功能
+  functionality_advantage:
+    title: 功能包含
+  spec_size_id:
+    title: 产品规格范围
+  glass_thickness_id:
+  spec:
+    title: 产品尺寸(mm)
+  base_unit_id:
+  unit_area:
+    title: 单位体积(m³)
+  unit_weight:
+  package_method_id:
+    title: 包装
+  package_dimension:
+  package_weight:
+  packing_unit:
+
+#205休闲浴缸
+205:
+  product_type_id:
+  brand:
+  product_origin:
+    title: 产地
+  material_id:
+  shape_id:
+    title: 缸体形状
+  has_water_bend:
+    title: 是否带冲浪功能
+  additional_function_id:
+    title: 功能包含
+  spec_size_id:
+    title: 产品规格范围(长)
+  spec:
+    title: 产品尺寸(mm)
+  base_unit_id:
+  unit_area:
+    title: 单位体积(m³)
+  unit_weight:
+  package_method_id:
+    title: 包装
+  package_dimension:
+  package_weight:
+  packing_unit:
+
+#206龙头五金
+206:
+  product_type_id:
+  brand:
+  product_origin:
+    title: 产地
+  material_id:
+    title: 主材
+  surface_craft_id:
+  shower_faucet_style_id:
+    title: 功能
+  spool_style_id:
+  installation_method_id:
+  shower_type_bracket_id:
+  spec_size_id:
+    title: 产品规格范围(高)
+  spec:
+    title: 产品尺寸(mm)
+  base_unit_id:
+  unit_area:
+    title: 单位体积(m³)
+  unit_weight:
+  package_method_id:
+    title: 包装
+  package_dimension:
+  package_weight:
+  packing_unit:
+
+# 智能座便器、普通座便器
+[306, 307, 308]:
+  product_type_id:
+  brand:
+  product_origin:
+    title: 产地
+  material_id:
+  surface_craft_id:
+  shape_id:
+    title: 产品外观
+  lid_id:
+    title: 下水方式
+  thickness_id:
+    title: 材质厚度（mm）
+  spec_size_id:
+    title: 产品规格范围(长)
+  spec:
+    title: 产品尺寸(mm)
+  base_unit_id:
+  unit_area:
+    title: 单位体积(m³)
+  unit_weight:
+  package_method_id:
+    title: 包装
+  package_dimension:
+  package_weight:
+  packing_unit:
+
+# 根分类：家具
+501:
+  product_origin:
+  brand:
+    title: 产品品牌
+  name:
+  spec:
+  product_style_id:
+  base_unit_id:
+    title: 产品单位
+  set_number:
+  number_of_package_items:
+  product_structure_id:
+  color_id:
+    title: 产品颜色
+  product_material:
+  facing_materials:
+  product_fabric_id:
+  painting_process:
+  surface_craft_id:
+    title: 表面处理
+  surface_gloss_id:
+  spring_structure_id:
+  filler:
+  seat_comfort_id:
+  door_opening_method_id:
+  installation_method_id:
+  unit_area:
+    title: 产品体积
+  package_items:
+  package_method_id:
+    title: 产品包装
+  production_cycle:
+  customizable:
+  maintenance_instruction:
+  warranty_time:
+  description:
+  design_concept:
+  meterial_advantage:
+  functionality_advantage:
+701:
+  name:
+  product_origin:
+    title: 产地
+  description:
+  spec:
+  base_unit_id:
+  packing_unit:
+  maintenance_instruction:
+    title: 材质说明
+# 开关 插座  带开关插座  其它
+1305:
+  brand:
+  product_origin:
+    title: 产地
+  certificate:
+    title: 证书标准
+  product_mold:
+  functional_property:
+    title: 产品功能
+  spec_size_id:
+    title: 规格范围
+  seat_power_id:
+    title: 电流(A)
+  installation_method_id:
+  spec:
+    title: 产品尺寸
+  product_use_place_id:
+    title: 适用场所
+  facing_materials:
+    title: 材质
+  surface_craft_id:
+    title: 产品特性
+  shape_id:
+  color_id:
+    title: 产品色调
+  power_id:
+    title: 电压(V)
+  power_capacity:
+  voltage_level_id:
+  warranty_time:
+    title: 质保期限
+  package_method_id:
+    title: 包装
+  business_unit_id:
+    title: 单位
+  package_dimension:
+    title: 包装规格(cm)
+  package_weight:
+    title: 包装重量(kg)
+[1302, 1303]:
+  brand:
+  certificate:
+  product_origin:
+  product_type_id:
+  product_use_place_id:
+    title: 适用场所
+  applicable_space_id:
+  product_style_id:
+    title: 灯具风格
+  intelligence:
+  light_material_id:
+  light_attachment_id:
+  color_id:
+    title: 产品色调
+  lampshade_material_id:
+  lampshade_attachment_id:
+  lamp_technology_id:
+  light_source:
+  source_category_id:
+  spatial_range_id:
+  suitable_storey_id:
+  spec:
+    title: 产品尺寸
+  shape_id:
+    title: 产品形状
+  light_category_id:
+  capacity_id:
+  color_temperature_id:
+  lumen_id:
+1322:
+  brand:
+  certificate:
+  product_origin:
+  product_use_place_id:
+    title: 适用场所
+  product_type_id:
+  product_style_id:
+    title: 灯具风格
+  product_color:
+  light_category_id:
+  power_capacity:
+  spec:
+    title: 产品尺寸
+  light_body:
+  lampshade_material_id:
+  lanterns_technology:
+  light_source:
+  source_category_id:
+  spatial_range_id:
+  suitable_storey_id:
+  product_shape:
+  functional_property:
+  base_type_id:
+  light_number:
+  warranty_time:
+    title: 质保期限
+  package_method_id:
+    title: 包装材料
+  business_unit_id:
+    title: 单位
+  package_dimension:
+    title: 包装规格(cm)
+  package_weight:
+    title: 包装重量(kg)
+1323:
+  brand:
+  certificate:
+  product_origin:
+  product_use_place_id:
+    title: 适用场所
+  product_type_id:
+  product_style_id:
+    title: 灯具风格
+  product_color:
+  light_category_id:
+  power_capacity:
+  spec:
+    title: 产品尺寸
+  light_body:
+  lampshade_material_id:
+  lanterns_technology:
+  light_source:
+  source_category_id:
+  spatial_range_id:
+  suitable_storey_id:
+  product_shape:
+  base_type_id:
+  light_number:
+  functional_property:
+  warranty_time:
+    title: 质保期限
+  package_method_id:
+    title: 包装材料
+  business_unit_id:
+    title: 单位
+  package_dimension:
+    title: 包装规格(cm)
+  package_weight:
+    title: 包装重量(kg)
+1324:
+  brand:
+  certificate:
+  product_origin:
+  product_type_id:
+  shape_id:
+    title: 产品形状
+  light_category_id:
+  capacity_id:
+  spec:
+    title: 产品尺寸
+  product_use_place_id:
+    title: 适用场所
+  product_style_id:
+    title: 灯具风格
+  light_material_id:
+  lampshade_material_id:
+  lamp_technology_id:
+  source_category_id:
+  suitable_storey_id:
+  seat_power_id:
+    title: 电流(AC)
+  power_id:
+    title: 电压(V)
+  base_type_id:
+  light_number:
+  warranty_time:
+    title: 质保期限
+  package_method_id:
+    title: 包装材料
+  business_unit_id:
+    title: 单位
+  package_dimension:
+    title: 包装规格(cm)
+  package_weight:
+    title: 包装重量(kg)
+1325:
+  brand:
+  product_origin:
+  certificate:
+  product_mold:
+  light_category_id:
+  capacity_id:
+  spec:
+    title: 产品尺寸
+  installation_method_id:
+  internal_range:
+  external_range:
+  light_material_id:
+  lampshade_material_id:
+  source_category_id:
+  spatial_range_id: 
+  suitable_storey_id:
+  shape_id:
+    title: 产品形状
+  seat_power_id:
+    title: 电流(AC)
+  power_id:
+    title: 电压(V)
+  warranty_time:
+    title: 质保期限
+  package_method_id:
+    title: 包装材料
+  business_unit_id:
+    title: 单位
+  package_dimension:
+    title: 包装规格(cm)
+  package_weight:
+    title: 包装重量(kg)
+1341:
+  brand:
+  product_origin:
+  certificate:
+  product_type_id:
+  shape_id:
+    title: 产品形状
+  light_tone:
+  color_temperature_id:
+    title: 色温(K)
+  power_capacity:
+  spec:
+    title: 产品尺寸
+  light_material_id:
+  light_attachment_id:
+  lamp_technology_id:
+  source_category_id:
+  lumen_id:
+    title: 流明(lm)
+  current:
+  power_id:
+    title: 电压(V)
+  feature_id:
+  installation_method_id:
+  warranty_time:
+    title: 质保期限
+  package_method_id:
+    title: 包装材料
+  business_unit_id:
+    title: 单位
+  package_dimension:
+    title: 包装规格(cm)
+  package_weight:
+    title: 包装重量(kg)
+1342:
+  brand:
+  product_origin:
+    title: 产地
+  certificate:
+  product_type_id:
+  light_category_id:
+  color_temperature_id:
+    title: 色温(K)
+  capacity_id:
+    title: 功率(W)
+  spec:
+    title: 产品尺寸
+  feature_id:
+  intelligence:
+    title: 是否智能
+  light_material_id:
+  color_id:
+    title: 产品色调
+  lamp_technology_id:
+  source_category_id:
+  shape_id:
+    title: 产品形状
+  lumen_id:
+    title: 流明(lm)
+  seat_power_id:
+    title: 电流(AC)
+  power_id:
+    title: 电压(V)
+  base_type_id:
+  installation_method_id:
+  warranty_time:
+    title: 质保期限
+  package_method_id:
+    title: 包装材料
+  business_unit_id:
+    title: 单位
+  package_dimension:
+    title: 包装规格(cm)
+  package_weight:
+    title: 包装重量(kg)
+1343:
+  brand:
+  product_origin:
+    title: 产地
+  certificate:
+  product_type_id:
+  product_use_place_id:
+    title: 适用场所
+  product_style_id:
+    title: 灯具风格
+  color_id:
+    title: 产品色调
+  light_material_id:
+  lampshade_material_id:
+  lamp_technology_id:
+  light_source:
+    title: 是否带光源
+  spec:
+    title: 产品尺寸
+  base_type_id:
+  installation_method_id:
+  light_quantity_id:
+  warranty_time:
+    title: 质保期限
+  package_method_id:
+    title: 包装材料
+  business_unit_id:
+    title: 单位
+  package_dimension:
+    title: 包装规格(cm)
+  package_weight:
+    title: 包装重量(kg)
+1304:
+  brand:
+  product_origin:
+    title: 产地
+  certificate:
+  product_type_id:
+  base_type_id:
+  shape_id:
+    title: 产品形状
+  capacity_id:
+    title: 功率
+  light_category_id:
+  light_material_id:
+  color_id:
+    title: 产品色调
+  lamp_technology_id:
+  source_category_id:
+  spec:
+    title: 产品尺寸
+  color_temperature_id:
+    title: 色温(K)
+  lumen_id:
+    title: 流明(lm)
+  seat_power_id:
+    title: 电流(AC)
+  power_id:
+    title: 电压(V)
+  feature_id:
+  installation_method_id:
+  warranty_time:
+    title: 质保期限
+  package_method_id:
+    title: 包装材料
+  business_unit_id:
+    title: 单位
+  package_dimension:
+    title: 包装规格(cm)
+  package_weight:
+    title: 包装重量(kg)
+1321:
+  brand:
+  product_origin:
+  certificate:
+  product_use_place_id:
+    title: 适用场所
+  product_type_id:
+  product_style_id:
+    title: 灯具风格
+  product_color:
+  light_category_id:
+  power_capacity:
+  power_id:
+    title: 电压(V)
+  spec:
+    title: 产品尺寸
+  light_body:
+  lampshade_material_id:
+  lanterns_technology:
+  light_source:
+    title: 是否带光源
+  source_category_id:
+  spatial_range_id:
+  suitable_storey_id:
+  product_shape:
+  base_type_id:
+  light_number:
+  warranty_time:
+    title: 质保期限
+  functional_property:
+  package_method_id:
+    title: 包装材料
+  business_unit_id:
+    title: 单位
+  package_dimension:
+    title: 包装规格(cm)
+  package_weight:
+    title: 包装重量(kg)
+
+#辅料
+401:
+  name:
+  description:
+  product_origin:
+    title: 产地
+  spec:
+  brand:
+  series:
+    title: 型号
+  product_use_place_id:
+  color_id:
+  business_unit_id:
+    title: 单位
+  unit_weight:
+    title: 单位重量(Kg)
+  business_unit_id:
+  base_unit_id:
+801:
+  name:
+  brand:
+  product_origin:
+  spec:
+  packing_unit:
+    title: 包装片数/米
+  unit_area:
+    title: 每件面积
+  package_weight:
+    title: 商品毛重
+  ceramics_thickness:
+    title: 产品厚度
+  wood_species:
+  product_material:
+    title: 基材材质
+  painting_process:
+  surface_effect:
+  gloss:
+  product_color:
+    title: 平衡纸颜色
+  facing_materials:
+    title: 背板材质
+  mat_handle:
+  production_cycle:
+  maintenance_instruction:
+  warranty_time:
+    title: 质保期
+  description:
+    title: 卖点介绍
+  base_unit_id:
+    title: 产品单位
+  eco_level_id: 
+  buckle_type_id: 
+  chamfering_process_id:
+  wax_process_id: 
+  installation_method_id:
+  customizable:
+    title: 是否定制
+#橱柜灯具
+583:
+  brand:
+  series:
+    title: 产品型号  
+  product_origin:
+  certificate:
+  light_category_id:
+  color_temperature_id:
+    title: 色温(K)
+  capacity_id:
+    title: 功率(W)
+  spec:
+    title: 产品尺寸
+  feature_id:
+  intelligence:
+    title: 是否智能
+  light_material_id:
+  color_id:
+    title: 产品色调
+  lamp_technology_id:
+  source_category_id:
+    title: 光源类型
+  shape_id:
+    title: 产品形状
+  lumen_id:
+    title: 流明
+  seat_power_id:
+    title: 电流(AC)
+  power_id:
+    title: 电压(V)
+  installation_method_id:
+  package_method_id:
+    title: 产品包装
+  production_cycle:
+  package_weight:
+    titile: 重量
+  customizable:
+#橱柜柜体
+582:
+  brand:
+  product_origin:
+  product_type_id:
+    title: 柜体类型
+  material_id:
+    titile: 柜体材质 
+  color_id:
+    title: 柜体颜色
+  painting_process:
+    title: 柜体工艺
+  thickness_id:
+    title: 门板厚度
+  installation_method_id:
+  package_method_id:
+    title: 产品包装
+  production_cycle:
+  package_weight:
+    titile: 重量
+  customizable:
+  eco_level_id:
+  maintenance_instruction:
+    title: 门板材质
+  warranty_time:
+    title: 保修时长
+1344:
+  brand:
+  certificate:
+  product_origin:
+  product_type_id:
+  product_use_place_id:
+    title: 适用场所
+  applicable_space_id:
+  product_style_id:
+    title: 灯具风格
+  intelligence:
+  light_material_id:
+  light_attachment_id:
+  color_id:
+    title: 产品色调
+  lampshade_material_id:
+  lampshade_attachment_id:
+  lamp_technology_id:
+  light_source:
+  source_category_id:
+  spatial_range_id:
+  suitable_storey_id:
+  spec:
+    title: 产品尺寸
+  shape_id:
+    title: 产品形状
+  light_category_id:
+  power_capacity:
+  colour_temperature:
+  lumen_id:

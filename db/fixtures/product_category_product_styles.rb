@@ -1,0 +1,22 @@
+ProductCategoryProductStyle.seed(:id,
+  { id: 1,  product_category_id: 201, position: 1, product_style_id: 1 },
+  { id: 2,  product_category_id: 201, position: 2, product_style_id: 2 },
+  { id: 3,  product_category_id: 201, position: 3, product_style_id: 3 },
+  { id: 4,  product_category_id: 201, position: 4, product_style_id: 4 },
+  { id: 5,  product_category_id: 201, position: 5, product_style_id: 5 },
+
+  { id: 6,  product_category_id: 501, position: 1,  product_style_id: 2  },
+  { id: 7,  product_category_id: 501, position: 2,  product_style_id: 6  },
+  { id: 8,  product_category_id: 501, position: 3,  product_style_id: 3  },
+  { id: 9,  product_category_id: 501, position: 4,  product_style_id: 7  },
+  { id: 10, product_category_id: 501, position: 5,  product_style_id: 8  },
+  { id: 11, product_category_id: 501, position: 6,  product_style_id: 9  },
+  { id: 12, product_category_id: 501, position: 7,  product_style_id: 10 },
+  { id: 13, product_category_id: 501, position: 8,  product_style_id: 11 },
+  { id: 14, product_category_id: 501, position: 9,  product_style_id: 12 },
+  { id: 15, product_category_id: 501, position: 10, product_style_id: 13 },
+  { id: 16, product_category_id: 501, position: 11, product_style_id: 14 },
+  { id: 17, product_category_id: 501, position: 12, product_style_id: 15 },
+  { id: 18, product_category_id: 501, position: 13, product_style_id: 16 },
+
+)

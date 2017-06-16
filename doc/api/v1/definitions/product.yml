@@ -1,0 +1,371 @@
+Product:
+  type: object
+  required:
+    - sku_id
+    - level
+    - product_category_id
+    - product_category_name
+    - product_no
+    - name
+    - description
+    - spec
+    - brand
+    - base_unit
+    - business_unit
+    - unit_weight
+    - face_price
+    - pictures
+    - created_at
+    - updated_at
+  properties:
+    sku_id:
+      type: integer
+      example: 1
+      description: SKU ID
+    product_category_id:
+      type: integer
+      example: 26
+      description: 分类 ID
+    product_category_name:
+      type: string
+      example: 全抛大理石
+      description: 分类名称
+    name:
+      type: string
+      example: 新卡布奇诺
+      description: 产品名称
+    product_no:
+      type: string
+      example: L5D80006
+      description: 产品编号
+    level:
+      type: string
+      example: A
+      description: 等级，值为 A/B/C/D
+    price_unit:
+      type: string
+      example: 片
+      description: 价格单位（可能为空）
+    face_price:
+      type: string
+      example: '88.0'
+      description: 面价（市场价）
+    nomember_price:
+      type: string
+      example: '88.0'
+      description: 非会员价（登录才返回）。【国外网站】
+    member_price:
+      type: string
+      example: '88.0'
+      description: 会员价（会员才返回）。【国外网站】
+    warehouses:
+      type: array
+      description: 各仓库及价格。【国内网站】
+      items:
+        type: object
+        required:
+          - warehouse
+          - nomember_price
+        properties:
+          warehouse:
+            type: string
+            example: 佛山
+            description: 仓库
+          nomember_price:
+            type: string
+            example: '88.0'
+            description: 非会员价（登录才返回）
+          member_price:
+            type: string
+            example: '88.0'
+            description: 会员价（会员才返回）
+    additional_function:
+      type: string
+      # example:
+      description: 附加功能
+    ancillary_incidental:
+      type: string
+      example: 带沥水篮
+      description: 配套附帶
+    appearance:
+      type: string
+      example: 方形
+      description: 外型
+    base_unit:
+      type: string
+      example: 片
+      description: 基本单位
+    brand:
+      type: string
+      example: 玛奇朵
+      description: 品牌
+    business_unit:
+      type: string
+      example: 箱
+      description: 业务单位
+    capacity:
+      type: string
+      # example:
+      description: 功率
+    cases_per_pallet:
+      type: integer
+      example: 60
+      description: 打托数量
+    chassis_material:
+      type: string
+      example: 亚克力
+      description: 底盘材质
+    color:
+      type: string
+      example: 蓝
+      description: 颜色
+    description:
+      type: string
+      example: 银色拉丝面+银光亮面压花纹
+      description: 产品说明
+    door_opening_method:
+      type: string
+      example: 平放式
+      description: 门开启方式
+    drain_water_way:
+      type: string
+      description: 地漏下水方式
+    drainage_method:
+      type: string
+      example: 地排式
+      description: 排水方式
+    flush_control_method:
+      type: string
+      example: 自动感应式
+      description: 沖水控制方式
+    flush_method:
+      type: string
+      example: 喷射虹吸式
+      description: 沖水方式
+    flush_volume:
+      type: string
+      example: 3/6L
+      description: 沖水量
+    glass_thickness:
+      type: string
+      example: '10'
+      description: 玻璃厚度
+    glass_variety:
+      type: string
+      example: 钢化玻璃
+      description: 玻璃品种
+    has_cold_hot_water:
+      type: boolean
+      example: true
+      description: 是否冷热水
+    has_contain_chassis:
+      type: boolean
+      example: true
+      description: 是否含底盘
+    has_cover_damper:
+      type: boolean
+      example: true
+      description: 盖板是否缓冲
+    has_mirror_lamp:
+      type: boolean
+      example: true
+      description: 是否镜灯
+    has_steam:
+      type: boolean
+      example: true
+      description: 是否设蒸气
+    has_water_bend:
+      type: boolean
+      example: true
+      description: 是否带存水弯
+    has_wooden_rack:
+      type: boolean
+      example: true
+      description: 是否含木架
+    installation_method:
+      type: string
+      example: 立地式
+      description: 安裝方式
+    lid:
+      type: string
+      example: 翻盖式
+      description: 盖子
+    main_cabinet_range:
+      type: string
+      example: 长度120cm以上
+      description: 主柜尺寸范围
+    main_cabinet_size:
+      type: string
+      example: 130cm
+      description: 主柜尺寸
+    material:
+      type: string
+      example: 瓷质
+      description: 材质
+    mesa_style:
+      type: string
+      example: 一体陶瓷盆
+      description: 台面類型
+    mirror_cabinet_range:
+      type: string
+      example: 长度20cm-50cm
+      description: 镜柜尺寸范围
+    mirror_cabinet_size:
+      type: string
+      example: 50cm
+      description: 镜柜尺寸
+    outlet_direction:
+      type: string
+      example: 向下
+      description: 下水方向
+    package_dimension:
+      type: string
+      example: 3件
+      description: 包装规格
+    package_method:
+      type: string
+      example: 纸箱+泡沫
+      description: 包装方式
+    package_weight:
+      type: string
+      example: '32.5'
+      description: 包装重量(kg)
+    packing_unit:
+      type: integer
+      example: 5
+      description: 包装单位(片/箱)
+    pictures:
+      type: array
+      description: 图片。可能为空数组
+      items:
+        type: object
+        required:
+          - type
+          - url
+        properties:
+          type:
+            type: string
+            example: 主图
+            description: 类型
+          url:
+            type: string
+            format: url
+            example: http://ofqnkkwvx.bkt.clouddn.com/resource/65c18a15fae5306a60c80f5f7957a637
+            description: 图片地址。可能为空
+    pits_distance:
+      type: string
+      example: 250mm
+      description: 坑距
+    power:
+      type: string
+      # example:
+      description: 电源
+    product_style:
+      type: string
+      example: 仿古
+      description: 产品风格
+    product_use_place:
+      type: string
+      example: 浴室
+      description: 产品用途
+    rim_category:
+      type: string
+      example: 精装边
+      description: 装边类型
+    safety_device:
+      type: string
+      # example:
+      description: 安全装置
+    seat_power:
+      type: string
+      # example:
+      description: 座圈功率
+    series:
+      type: string
+      description: 系列
+    shape:
+      type: string
+      example: 正方形
+      description: 形状
+    shower_faucet_style:
+      type: string
+      example: 双花洒龙型
+      description: 淋浴花洒龙头类型
+    shower_type_bracket:
+      type: string
+      example: 可旋转带升降
+      description: 花洒支架类型
+    side_cabinet_size:
+      type: string
+      example: '60cm'
+      description: 侧柜尺寸
+    side_cabinet_range:
+      type: string
+      example: 长50cm以上
+      description: 侧柜尺寸范围
+    slot_number:
+      type: string
+      example: 3个及以上
+      description: 槽数
+    spec:
+      type: string
+      example: 800x800
+      description: 产品规格
+    spec_size:
+      type: string
+      example: 高20cm-50cm
+      description: 规格尺寸范围
+    spool_style:
+      type: string
+      example: 陶瓷片阀芯
+      description: 阀芯类型
+    surface_craft:
+      type: string
+      example: 哑面
+      description: 表面工艺
+    take_temperature:
+      type: string
+      example: 常温
+      description: 坐温
+    tap_hole:
+      type: string
+      example: 单孔
+      description: 龙头开孔
+    thickness:
+      type: string
+      example: 6mm
+      description: 厚度(mm)
+    towel_rack_style:
+      type: string
+      example: 折叠活动型
+      description: 浴巾架类型
+    unit_area:
+      type: string
+      example: '0.12'
+      description: 单位面积/体积
+    unit_weight:
+      type: string
+      example: '29.0'
+      description: 单位重量(kg)
+    water_absrp_rate:
+      type: string
+      example: 0.5以下
+      description: 吸水率
+    water_temperature:
+      type: string
+      example: 常温
+      description: 水温
+    whole_material:
+      type: string
+      example: 优质浮法玻璃
+      description: 镜面材质
+    created_at:
+      type: string
+      format: date-time
+      example: '2017-01-16T14:42:58+08:00'
+      description: 添加时间
+    updated_at:
+      type: string
+      format: date-time
+      example: '2017-01-16T14:42:58+08:00'
+      description: 更新时间

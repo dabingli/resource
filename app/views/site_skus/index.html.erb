@@ -1,0 +1,91 @@
+<%= render('search', path: site_skus_path) %>
+
+<table class="table table-bordered table-striped site-sku-management management">
+  <thead>
+    <tr>
+      <th>产品名称</th>
+      <th>SKU</th>
+      <th>图片</th>
+      <th>产品类别</th>
+      <th>规格</th>
+      <th>平台/商品馆</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+
+  <tbody class="text-center">
+    <% @skus.each do |sku| %>
+      <tr data-id="<%= sku.id %>">
+        <td><%= sku.product&.name %></td>
+        <td class="sku-name"><%= "#{sku.product&.product_no}-#{sku.level}" %></td>
+        <td>
+          <%=
+            image_url = sku.first_image_url
+            unless image_url.blank?
+              image_tag(image_url, alt: '产品图片')
+            end
+          %>
+        </td>
+        <td><%= sku.product&.product_category&.name %></td>
+        <td><%= sku.product&.spec %></td>
+        <td>
+          <ul class="sites">
+            <% sku.site_skus.each do |site_sku| %>
+              <li>
+                <%= site_sku.site.name %><%#= sku.product_halls.select {|product_hall| product_hall.site_id == site_sku.site_id}.map(&:name).join('、') %>
+              </li>
+            <% end %>
+          </ul>
+        </td>
+        <td>
+          <button type="button" class="btn btn-info btn-sm edit">编辑</button>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @skus %>
+
+<div class="modal fade edit-site-sku" tabindex="-1" role="dialog" data-query-api="<%= sku_site_skus_path('_ID_') %>">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="loader">
+        <div class="progress">
+          <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
+          </div>
+        </div>
+      </div>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body">
+        <%= form_tag(sku_site_skus_path('_ID_')) do %>
+          <ul class="site-skus-container">
+            <% @sites.each do |site| %>
+              <li>
+                <label class="checkbox-inline site">
+                  <input type="checkbox" id="site-<%= site.id %>" name="site_ids[]" value="<%= site.id %>">
+                  <%= site.name %>
+                </label>
+                <!-- <div class="halls">
+                  <% site.product_halls.each do |product_hall| %>
+                    <label class="checkbox-inline">
+                      <input type="checkbox" id="hall-<%= product_hall.id %>" name="product_hall_ids[<%= site.id %>][]" value="<%= product_hall.id %>">
+                      <%= product_hall.name %>
+                    </label>
+                  <% end %>
+                </div> -->
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary save">保存</button>
+      </div>
+    </div>
+  </div>
+</div>

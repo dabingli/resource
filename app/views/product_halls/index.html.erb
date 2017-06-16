@@ -1,0 +1,32 @@
+<ul class="nav nav-tabs">
+  <% @sites.each_with_index do |site, index| %>
+    <li class="<%= 'active' if index == 0 %>">
+      <a data-toggle="tab" href="#site-<%= site.id %>"><%= site.name %></a>
+    </li>
+  <% end %>
+</ul>
+
+<div class="tab-content">
+  <% @sites.each_with_index do |site, index| %>
+    <div class="tab-pane <%= 'active' if index == 0 %>" id="site-<%= site.id %>">
+      <table class="table table-bordered table-striped management">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>名称</th>
+            <th>添加时间</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <% site.product_halls.each do |product_hall| %>
+            <tr>
+              <td><%= product_hall.id %></td>
+              <td><%= product_hall.name %></td>
+              <td><%= product_hall.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>

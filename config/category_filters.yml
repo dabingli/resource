@@ -1,0 +1,94 @@
+# 各分类的筛选条件
+
+titles:
+  product_category_id:
+    title: 类型
+    en_title: Category
+  spec:
+    title: 规格
+    en_title: Size
+  spec_size_id:
+    title: 尺寸
+    en_title: Size
+  appearance_id:
+    title: 产品外观
+    en_title: Appearance
+
+# 根分类：瓷砖
+1:
+  product_category_id:
+  material_id:
+  color_id:
+  spec:
+  shape_id:
+  water_absrp_rate_id:
+  surface_craft_id:
+
+# 根分类：马赛克
+101:
+  product_category_id:
+  material_id:
+  color_id:
+  spec:
+  shape_id:
+  water_absrp_rate_id:
+  surface_craft_id:
+
+# 根分类：卫浴
+201:
+  brand:
+  product_category_id:
+  product_type_id:
+  material_id:
+  spec_size_id:
+  surface_craft_id:
+
+# 根分类：辅助材料
+401:
+  brand:
+  product_category_id:
+  product_use_place_id:
+  color_id:
+  series:
+    title: 型号
+    en_title: Series
+
+# 根分类：家居
+501:
+  brand:
+
+# 浴室柜
+202:
+  brand:
+  product_type_id:
+  product_style_id:
+  material_id:
+    title: 柜体/镜框主材
+    en_title: Main Material
+
+# 陶瓷洁具
+203:
+  brand:
+  product_type_id:
+  material_id:
+  drainage_method_id:
+
+# 智能坐便器、普通坐便器
+[240, 241]:
+  brand:
+  product_type_id:
+  material_id:
+  drainage_method_id:
+  pits_distance_id:
+    title: 排污孔距（mm）
+    en_title: Pitch of Holes
+  power_id:
+#根分类：物料展具
+701:
+  brand:
+#根分类：物料展具
+1301:
+  brand:
+#地板
+801:
+  brand:

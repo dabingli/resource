@@ -1,0 +1,45 @@
+// Place all the styles related to the product_halls controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.edit_hall {
+	padding: 10px;
+	border-radius: 4px;
+}
+
+.modal-fade.modal.fade:not(.in) .modal-dialog {
+  -webkit-transform: translate3d(50%, 0, 0);
+  transform: translate3d(50%, 0, 0);
+}
+
+// make bootstrap modal slide from the other side.
+// .modal.fade:not(.in).left .modal-dialog {
+// 	-webkit-transform: translate3d(-25%, 0, 0);
+// 	transform: translate3d(-25%, 0, 0);
+// }
+// .modal.fade:not(.in).right .modal-dialog {
+// 	-webkit-transform: translate3d(25%, 0, 0);
+// 	transform: translate3d(25%, 0, 0);
+// }
+// .modal.fade:not(.in).bottom .modal-dialog {
+// 	-webkit-transform: translate3d(0, 25%, 0);
+// 	transform: translate3d(0, 25%, 0);
+// }
+
+// /* Alternative Angles */
+// .modal.fade:not(.in).top-left .modal-dialog {
+// 	-webkit-transform: translate3d(-25%, -25%, 0);
+// 	transform: translate3d(-25%, -25%, 0);
+// }
+// .modal.fade:not(.in).top-right .modal-dialog {
+// 	-webkit-transform: translate3d(25%, -25%, 0);
+// 	transform: translate3d(25%, -25%, 0);
+// }
+// .modal.fade:not(.in).bottom-left .modal-dialog {
+// 	-webkit-transform: translate3d(-25%, 25%, 0);
+// 	transform: translate3d(-25%, 25%, 0);
+// }
+// .modal.fade:not(.in).bottom-right .modal-dialog {
+// 	-webkit-transform: translate3d(25%, 25%, 0);
+// 	transform: translate3d(25%, 25%, 0);
+// }
